@@ -7,6 +7,12 @@ import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
+import {ProductDetailsDialogComponent} from '../product-details-dialog/product-details-dialog.component';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
+import {MatOption, MatSelectModule} from '@angular/material/select';
+import {CommonModule} from '@angular/common';
+import {FormsModule} from '@angular/forms';
 
 @Component({
   selector: 'app-product-list',
@@ -15,7 +21,13 @@ import {MatInputModule} from '@angular/material/input';
     MatSortModule,
     MatPaginatorModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
+    FormsModule,
+    CommonModule,
+    MatOption,
+    MatSelectModule
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
@@ -49,18 +61,28 @@ export class ProductListComponent implements AfterViewInit{
     { id: 25, name: 'Kitchen Knife Set', description: 'Complete knife set for all your kitchen needs.', price: 119.99, category: 'Home Appliances' }
   ];
   dataSource: MatTableDataSource<any>;
+  filteredDataSource: MatTableDataSource<any>;
   columnsToDisplay = ['name', 'description', 'price', 'category'];
+  selectedCategories: string[] = [];
+  uniqueCategories: string[] = [];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor() {
+  constructor(private dialog: MatDialog) {
     this.dataSource = new MatTableDataSource(this.products);
+    this.filteredDataSource = this.dataSource;
+    this.uniqueCategories = this.getUniqueCategories();
   }
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  getUniqueCategories(): string[] {
+    const categories = this.products.map(product => product.category);
+    return [...new Set(categories)];
   }
 
   applyFilter(event: Event) {
@@ -69,6 +91,26 @@ export class ProductListComponent implements AfterViewInit{
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
+    }
+  }
+
+  applyCategoryFilter() {
+    if (this.selectedCategories.length > 0) {
+      this.filteredDataSource.data = this.products.filter(product =>
+        this.selectedCategories.includes(product.category)
+      );
+    } else {
+      this.filteredDataSource.data = this.products;
+    }
+    this.filteredDataSource.paginator = this.paginator;
+  }
+
+  showDetails(productId: number) {
+    const product = this.products.find(product => product.id === productId);
+    if (product) {
+      this.dialog.open(ProductDetailsDialogComponent, {
+        data: product
+      })
     }
   }
 }

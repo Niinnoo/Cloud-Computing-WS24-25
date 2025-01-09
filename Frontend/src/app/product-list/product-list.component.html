@@ -7,6 +7,16 @@
     <input matInput (keyup)="applyFilter($event)"/>
   </mat-form-field>
 
+  <!-- Category-Filter -->
+  <mat-form-field appearance="fill">
+    <mat-label>Filter by Category</mat-label>
+    <mat-select [(ngModel)]="selectedCategories" (selectionChange)="applyCategoryFilter()" multiple>
+      <mat-option *ngFor="let category of uniqueCategories" [value]="category">
+        {{ category }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+
   <!-- Product Table -->
   <table mat-table [dataSource]="dataSource" matSort>
     <!-- 1st Column: Name -->
@@ -35,7 +45,7 @@
 
     <!-- Header and Rows -->
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
-    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;"></tr>
+    <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="showDetails(row.id)"></tr>
   </table>
 
   <!-- Paginator for Table -->
