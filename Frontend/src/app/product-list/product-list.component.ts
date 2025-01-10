@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild} from '@angular/core';
+import {AfterViewInit, Component, ViewChild, Output, EventEmitter} from '@angular/core';
 import {
   MatTableDataSource,
   MatTableModule
@@ -27,12 +27,19 @@ import {FormsModule} from '@angular/forms';
     FormsModule,
     CommonModule,
     MatOption,
-    MatSelectModule
+    MatSelectModule,
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent implements AfterViewInit{
+  // Toggles the cart visibility
+  @Output() toggleCart = new EventEmitter<void>();
+  
+  onCartButtonClick() {
+    this.toggleCart.emit();
+  }
+
   products = [
     { id: 1, name: 'Wireless Headphones', description: 'High-quality headphones.', price: 149.99, category: 'Electronics' },
     { id: 2, name: 'Smartwatch', description: 'Track fitness and stay connected.', price: 199.99, category: 'Electronics' },

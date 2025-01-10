@@ -1,5 +1,12 @@
 .product-list {
   margin: 20px;
+  position: relative;
+}
+
+.button-container {
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 
 .matHeaderCellDef {

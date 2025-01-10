@@ -1,13 +1,19 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {ProductListComponent} from './product-list/product-list.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, ProductListComponent],
+  standalone: true,
+  imports: [ProductListComponent, ShoppingCartComponent, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Frontend';
+  showShoppingCart = false;
+
+  toggleView() {
+    this.showShoppingCart = !this.showShoppingCart;
+  }
 }
