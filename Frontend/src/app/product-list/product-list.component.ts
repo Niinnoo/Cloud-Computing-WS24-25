@@ -33,14 +33,7 @@ import {FormsModule} from '@angular/forms';
   styleUrl: './product-list.component.css'
 })
 export class ProductListComponent implements AfterViewInit{
-  // Toggles the cart visibility
-  @Output() toggleCart = new EventEmitter<void>();
-  
-  onCartButtonClick() {
-    this.toggleCart.emit();
-  }
-
-  products = [
+    products = [
     { id: 1, name: 'Wireless Headphones', description: 'High-quality headphones.', price: 149.99, category: 'Electronics' },
     { id: 2, name: 'Smartwatch', description: 'Track fitness and stay connected.', price: 199.99, category: 'Electronics' },
     { id: 3, name: 'Coffee Maker', description: 'Brew fresh coffee.', price: 79.99, category: 'Home Appliances' },
@@ -72,6 +65,9 @@ export class ProductListComponent implements AfterViewInit{
   columnsToDisplay = ['name', 'description', 'price', 'category'];
   selectedCategories: string[] = [];
   uniqueCategories: string[] = [];
+
+  // Toggles the cart visibility
+  @Output() toggleCart = new EventEmitter<void>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
@@ -119,5 +115,9 @@ export class ProductListComponent implements AfterViewInit{
         data: product
       })
     }
+  }
+
+  onCartButtonClick() {
+    this.toggleCart.emit();
   }
 }
