@@ -1,3 +1,4 @@
+import { CartService, CartItem } from '../shopping-cart-service.service';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -27,37 +28,36 @@ export class ShoppingCartComponent {
 
   @Output() toggleView = new EventEmitter<void>();
 
-  constructor(private snackBar: MatSnackBar) {}
+  constructor(
+    private snackBar: MatSnackBar,
+    private cartService: CartService
+  ) {}
+
+  ngOnInit() {
+    this.cartService.cartItems$.subscribe(items => {
+      this.cartItems = items;
+      this.dataSource.data = items;
+    });
+  }
 
   getTotalCost() {
-    return this.cartItems.map(t => t.price * t.quantity).reduce((acc, value) => acc + value, 0);
+    return this.cartService.getTotalCost();
+  }
+
+  addQuantity(item: CartItem) {
+    this.cartService.updateQuantity(item, true);
+  }
+
+  removeQuantity(item: CartItem) {
+    this.cartService.updateQuantity(item, false);
+  }
+
+  removeFromCart(item: CartItem) {
+    this.cartService.removeFromCart(item);
+    this.snackBar.open('Item removed from cart', 'Close', { duration: 2000 });
   }
 
   onBackClick() {
     this.toggleView.emit();
   }
-  
-  addToCart(item: CartItem) {
-    const existingItem = this.cartItems.find(cartItem => cartItem.id === item.id);
-    if (existingItem) {
-      existingItem.quantity += 1;
-    } else {
-      this.cartItems.push({ ...item, quantity: 1 });
-    }
-    this.dataSource.data = this.cartItems;
-    this.snackBar.open('Item added to cart', 'Close', { duration: 2000 });
-  }
-
-  removeFromCart(item: CartItem) {
-    this.cartItems = this.cartItems.filter(cartItem => cartItem.id !== item.id);
-    this.dataSource.data = this.cartItems;
-    this.snackBar.open('Item removed from cart', 'Close', { duration: 2000 });
-  }
-}
-
-interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
 }

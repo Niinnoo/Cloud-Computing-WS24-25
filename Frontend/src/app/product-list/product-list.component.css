@@ -3,12 +3,17 @@
   position: relative;
 }
 
-.button-container {
+.cart-button {
   position: absolute;
-  top: 0;
   right: 0;
+  top: 1;
 }
 
 .matHeaderCellDef {
   position: sticky;
+}
+
+.mat-column-addToCart {
+  width: 40px;
+  max-width: 75px;
 }

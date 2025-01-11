@@ -1,8 +1,5 @@
 import {AfterViewInit, Component, ViewChild, Output, EventEmitter} from '@angular/core';
-import {
-  MatTableDataSource,
-  MatTableModule
-} from '@angular/material/table';
+import {MatTableDataSource,MatTableModule} from '@angular/material/table';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
 import {MatFormFieldModule} from '@angular/material/form-field';
@@ -13,9 +10,13 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatOption, MatSelectModule} from '@angular/material/select';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
+import { MatIconModule } from '@angular/material/icon';
+import { MatBadgeModule } from '@angular/material/badge';
+import { CartService } from '../shopping-cart-service.service';
 
 @Component({
   selector: 'app-product-list',
+  standalone: true,
   imports: [
     MatTableModule,
     MatSortModule,
@@ -28,12 +29,14 @@ import {FormsModule} from '@angular/forms';
     CommonModule,
     MatOption,
     MatSelectModule,
+    MatIconModule,
+    MatBadgeModule
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent implements AfterViewInit{
-    products = [
+export class ProductListComponent implements AfterViewInit {
+  products = [
     { id: 1, name: 'Wireless Headphones', description: 'High-quality headphones.', price: 149.99, category: 'Electronics' },
     { id: 2, name: 'Smartwatch', description: 'Track fitness and stay connected.', price: 199.99, category: 'Electronics' },
     { id: 3, name: 'Coffee Maker', description: 'Brew fresh coffee.', price: 79.99, category: 'Home Appliances' },
@@ -62,17 +65,16 @@ export class ProductListComponent implements AfterViewInit{
   ];
   dataSource: MatTableDataSource<any>;
   filteredDataSource: MatTableDataSource<any>;
-  columnsToDisplay = ['name', 'description', 'price', 'category'];
+  columnsToDisplay = ['addToCart', 'name', 'description', 'price', 'category'];
   selectedCategories: string[] = [];
   uniqueCategories: string[] = [];
 
-  // Toggles the cart visibility
   @Output() toggleCart = new EventEmitter<void>();
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog) {
+  constructor(private dialog: MatDialog, private cartService: CartService) {
     this.dataSource = new MatTableDataSource(this.products);
     this.filteredDataSource = this.dataSource;
     this.uniqueCategories = this.getUniqueCategories();
@@ -86,6 +88,14 @@ export class ProductListComponent implements AfterViewInit{
   getUniqueCategories(): string[] {
     const categories = this.products.map(product => product.category);
     return [...new Set(categories)];
+  }
+
+  getTotalQuantity(): number {
+    return this.cartService.getTotalQuantity();
+  }
+
+  addToCart(product: any) {
+    this.cartService.addToCart(product);
   }
 
   applyFilter(event: Event) {

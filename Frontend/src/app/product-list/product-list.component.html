@@ -1,10 +1,18 @@
 <div class="product-list">
   <h1>Product Catalog</h1>
 
-  <!-- button in the button container -->
-  <div class="button-container">
-    <button mat-raised-button color="primary" (click)="onCartButtonClick()">Shopping Cart</button>
-  </div>
+  <!-- cart button -->
+  <button class="cart-button"
+      mat-raised-button 
+      color="primary" 
+      (click)="onCartButtonClick()"
+      [matBadge]="getTotalQuantity()"
+      [matBadgeHidden]="getTotalQuantity() === 0"
+      matBadgeColor="warn"
+      matBadgePosition="before"
+      matBadgeOverlap="false">
+      Shopping Cart
+  </button>
 
   <!-- Filter -->
   <mat-form-field appearance="outline" class="filter-field">
@@ -24,6 +32,16 @@
 
   <!-- Product Table -->
   <table mat-table [dataSource]="dataSource" matSort>
+      <!-- New Column: Add to Cart Button -->
+      <ng-container matColumnDef="addToCart">
+        <th mat-header-cell *matHeaderCellDef></th>  <!-- Remove text -->
+        <td mat-cell *matCellDef="let product">
+          <button mat-icon-button color="primary" (click)="addToCart(product); $event.stopPropagation()">
+            <mat-icon>add_shopping_cart</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+    
     <!-- 1st Column: Name -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
