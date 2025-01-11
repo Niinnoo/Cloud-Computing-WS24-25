@@ -21,14 +21,22 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent {
-  @Output() toggleView = new EventEmitter<void>();
-
   displayedColumns: string[] = ['name', 'price', 'quantity', 'total', 'actions'];
   dataSource = new MatTableDataSource<CartItem>([]);
   cartItems: CartItem[] = [];
 
+  @Output() toggleView = new EventEmitter<void>();
+
   constructor(private snackBar: MatSnackBar) {}
 
+  getTotalCost() {
+    return this.cartItems.map(t => t.price * t.quantity).reduce((acc, value) => acc + value, 0);
+  }
+
+  onBackClick() {
+    this.toggleView.emit();
+  }
+  
   addToCart(item: CartItem) {
     const existingItem = this.cartItems.find(cartItem => cartItem.id === item.id);
     if (existingItem) {
@@ -44,14 +52,6 @@ export class ShoppingCartComponent {
     this.cartItems = this.cartItems.filter(cartItem => cartItem.id !== item.id);
     this.dataSource.data = this.cartItems;
     this.snackBar.open('Item removed from cart', 'Close', { duration: 2000 });
-  }
-
-  getTotalCost() {
-    return this.cartItems.map(t => t.price * t.quantity).reduce((acc, value) => acc + value, 0);
-  }
-
-  onBackClick() {
-    this.toggleView.emit();
   }
 }
 
