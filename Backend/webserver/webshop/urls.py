@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import inventory_list
+from .views import inventory
 
 urlpatterns =[
-    path('inventory_list', inventory_list.inventory_list, name='inventory_list')
+    path('inventory', inventory.inventory, name='inventory')
 ]
