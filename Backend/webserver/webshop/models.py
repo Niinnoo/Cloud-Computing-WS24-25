@@ -9,5 +9,6 @@ class Product(models.Model):
     short_description = models.CharField(max_length=200)
     long_description = models.CharField(max_length=500)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='products')
+    stock = models.IntegerField()
 
 
