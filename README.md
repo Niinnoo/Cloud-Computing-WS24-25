@@ -34,3 +34,46 @@ Ensure all prerequisites are installed by following the instructions on the Angu
 You're all set! The frontend should now be running.
 
 Further information coming!
+
+# Backend Setup Instruction
+
+1. Create a venv in the Folder **Backend**
+
+   ```sh
+   python -m venv venv
+   ```
+
+2. Activate **venv**
+
+   Dependin on the os you use either use:
+
+   ```sh
+   .\venv\Scrpipt\activate 
+   ```
+
+   or
+
+   ```sh
+   .\venv\Scrpipt\activate.bat 
+   ```
+
+   or
+
+   ```sh
+   source venv/bin/activate
+   ```
+
+3. Install Django
+
+   Install Django insdide the venv
+
+   ```sh
+   python -m pip install Django
+   ```
+
+4. Start Webserver
+
+   Go into the folder **webserver** (in your console having the venv activated)
+   ```sh
+   python manage.py runserver
+   ```
