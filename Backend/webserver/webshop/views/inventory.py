@@ -1,24 +1,13 @@
-from django.http import JsonResponse
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import status
 from ..models import Product
+from ..serializers import ProductSerializer
 
 
-def inventory(request):
-    if request.method == 'GET':
-        products = Product.objects.select_related('category').all()
 
-        inventory = [
-            {
-                'name' : product.name,
-                'category' : product.category.name,
-                'price' : f'{product.price}€',
-                'short_description' : product.short_description,
-                'long_description' : product.long_description
-            }
-            for product in products
-        ]
-
-
-        return JsonResponse({'success': True, 'inventory_list' : inventory})
-
-    else:
-        return JsonResponse({'success': False, 'error' : 'Invalid Request'})
+class InventoryView(APIView):
+    def get(self, request):
+        inventory = Product.objects.select_related('category').all()
+        serializer = ProductSerializer(inventory, many=True)
+        return Response(serializer.data)
