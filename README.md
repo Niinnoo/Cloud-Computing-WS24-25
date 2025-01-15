@@ -63,12 +63,12 @@ Further information coming!
    source venv/bin/activate
    ```
 
-3. Install Django
+3. Install Packages
 
-   Install Django insdide the venv
+   Go to the */Backend* folder and execute:
 
    ```sh
-   python -m pip install Django
+   pip install -r requirements.txt
    ```
 
 4. Start Webserver
