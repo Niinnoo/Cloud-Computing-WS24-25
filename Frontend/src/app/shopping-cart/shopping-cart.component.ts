@@ -7,6 +7,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -22,15 +23,15 @@ import { CommonModule } from '@angular/common';
   styleUrls: ['./shopping-cart.component.css']
 })
 export class ShoppingCartComponent {
+  showCheckout: boolean = false;
   displayedColumns: string[] = ['name', 'price', 'quantity', 'total', 'actions'];
   dataSource = new MatTableDataSource<CartItem>([]);
   cartItems: CartItem[] = [];
 
-  @Output() toggleView = new EventEmitter<void>();
-
   constructor(
     private snackBar: MatSnackBar,
-    private cartService: CartService
+    private cartService: CartService,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -58,6 +59,10 @@ export class ShoppingCartComponent {
   }
 
   onBackClick() {
-    this.toggleView.emit();
+    this.router.navigate(['']);
+  }
+
+  onCheckoutClick() {
+    this.router.navigate(['checkout']);
   }
 }

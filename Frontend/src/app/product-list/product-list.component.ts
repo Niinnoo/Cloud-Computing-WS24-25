@@ -13,6 +13,7 @@ import {FormsModule} from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CartService } from '../shopping-cart-service.service';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',
@@ -30,7 +31,8 @@ import { CartService } from '../shopping-cart-service.service';
     MatOption,
     MatSelectModule,
     MatIconModule,
-    MatBadgeModule
+    MatBadgeModule,
+    RouterModule
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
@@ -69,16 +71,15 @@ export class ProductListComponent implements AfterViewInit {
   selectedCategories: string[] = [];
   uniqueCategories: string[] = [];
 
-  @Output() toggleCart = new EventEmitter<void>();
-
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private cartService: CartService) {
+  constructor(private dialog: MatDialog, private cartService: CartService, private router: Router) {
     this.dataSource = new MatTableDataSource(this.products);
     this.filteredDataSource = this.dataSource;
     this.uniqueCategories = this.getUniqueCategories();
   }
+
 
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
@@ -128,6 +129,6 @@ export class ProductListComponent implements AfterViewInit {
   }
 
   onCartButtonClick() {
-    this.toggleCart.emit();
+    this.router.navigate(['/cart']);
   }
 }

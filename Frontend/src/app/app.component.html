@@ -1,6 +1,1 @@
-<div *ngIf="!showShoppingCart">
-  <app-product-list (toggleCart)="toggleView()"></app-product-list>
-</div>
-<div *ngIf="showShoppingCart">
-  <app-shopping-cart (toggleView)="toggleView()"></app-shopping-cart>
-</div>
+<router-outlet></router-outlet>
