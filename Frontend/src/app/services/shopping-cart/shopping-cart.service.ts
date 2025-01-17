@@ -1,12 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-
-export interface CartItem {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-}
+import { CartItem} from '../../models/cart-item.model';
 
 @Injectable({
   providedIn: 'root'
@@ -42,10 +36,10 @@ export class CartService {
   updateQuantity(item: CartItem, increase: boolean) {
     const currentItems = this.cartItems.getValue();
     const existingItem = currentItems.find(i => i.id === item.id);
-    
+
     if (existingItem) {
       existingItem.quantity = increase ? existingItem.quantity + 1 : existingItem.quantity - 1;
-      
+
       if (existingItem.quantity === 0) {
         this.removeFromCart(item);
       } else {

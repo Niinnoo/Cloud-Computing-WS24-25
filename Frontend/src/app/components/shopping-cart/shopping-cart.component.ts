@@ -1,4 +1,5 @@
-import { CartService, CartItem } from '../shopping-cart-service.service';
+import { CartService } from '../../services/shopping-cart/shopping-cart.service';
+import { CartItem} from '../../models/cart-item.model';
 import { Component, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSnackBar } from '@angular/material/snack-bar';
