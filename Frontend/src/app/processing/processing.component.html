@@ -1,0 +1,68 @@
+<div class="order-overview">
+    <h1>Review &amp; Order</h1>
+    
+    <!-- Salutation -->
+    <p class="salutation">Welcome, [Username]</p>
+    
+    <div class="content">
+      <!-- Left Column -->
+      <div class="left-column">
+        <div class="card-row">
+          <!-- Billing Address -->
+          <mat-card class="half-width">
+            <mat-card-title>Billing Address</mat-card-title>
+            <mat-card-content>
+              <p>Please edit the billing address.</p>
+              <button mat-button>Edit</button>
+            </mat-card-content>
+          </mat-card>
+        
+          <!-- Shipping Address -->
+          <mat-card class="half-width">
+            <mat-card-title>Shipping Address</mat-card-title>
+            <mat-card-content>
+              <p>Shipping to billing address</p>
+              <button mat-button>Change</button>
+            </mat-card-content>
+          </mat-card>
+        </div>
+      
+        <!-- Shipping Options -->
+        <mat-card>
+          <mat-card-title>Shipping Options</mat-card-title>
+          <mat-radio-group>
+            <mat-radio-button value="standard">Standard Shipping (+3.95 €)</mat-radio-button>
+            <mat-radio-button value="pickup">Pickup in Store (free)</mat-radio-button>
+          </mat-radio-group>
+        </mat-card>
+      
+        <!-- Payment Methods -->
+        <mat-card>
+          <mat-card-title>Payment Methods</mat-card-title>
+          <mat-select placeholder="Select Payment Method">
+            <mat-option value="paypal">PayPal</mat-option>
+            <mat-option value="creditcard">Credit Card</mat-option>
+            <mat-option value="directdebit">Direct Debit</mat-option>
+          </mat-select>
+        </mat-card>
+      </div>
+      
+      <!-- Right Column -->
+      <div class="right-column">
+        <!-- Order Summary -->
+        <mat-card>
+          <mat-card-title>Your Order</mat-card-title>
+          <mat-card-content>
+            <p>Product Name: [Product Details]</p>
+            <p>Price: 12.99 €</p>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+    
+    <!-- Actions -->
+    <div class="actions">
+      <button mat-raised-button color="primary" (click)="buyCart()">Buy</button>
+      <button mat-raised-button color="primary" (click)="chancelOrder()">Cancel</button>
+    </div>
+  </div>

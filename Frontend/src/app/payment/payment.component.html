@@ -1,0 +1,87 @@
+<div class="banner">
+    <img (click)="goBackToHome()" src="assets/online-shop.svg" alt="Logo">
+</div>
+
+<div class="container">
+    <h2>Create Billing Address</h2>
+    <form (ngSubmit)="onSubmit()" #billingForm="ngForm">
+      <div class="personal-info">
+        <h3>Personal Information</h3>
+        <mat-form-field appearance="fill">
+          <a>Title <span class="required">*</span></a>
+          <mat-select required [(ngModel)]="title" name="title" #titleCtrl="ngModel">
+            <mat-option value="female">Ms.</mat-option>
+            <mat-option value="male">Mr.</mat-option>
+          </mat-select>
+          <div *ngIf="titleCtrl.invalid && (titleCtrl.dirty || titleCtrl.touched)" class="error">
+            Title is required
+          </div>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <a>First Name <span class="required">*</span></a>
+          <input matInput required [(ngModel)]="firstName" name="firstName" #firstNameCtrl="ngModel">
+          <div *ngIf="firstNameCtrl.invalid && (firstNameCtrl.dirty || firstNameCtrl.touched)" class="error">
+            First Name is required
+          </div>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <a>Last Name <span class="required">*</span></a>
+          <input matInput required [(ngModel)]="lastName" name="lastName" #lastNameCtrl="ngModel">
+          <div *ngIf="lastNameCtrl.invalid && (lastNameCtrl.dirty || lastNameCtrl.touched)" class="error">
+            Last Name is required
+          </div>
+        </mat-form-field>
+      </div>
+      <div class="billing-address">
+        <h3>Billing Address</h3>
+        <mat-form-field appearance="fill">
+          <a>Billing Address <span class="required">*</span></a>
+          <input matInput required [(ngModel)]="billingAddress" name="billingAddress" #billingAddressCtrl="ngModel">
+          <div *ngIf="billingAddressCtrl.invalid && (billingAddressCtrl.dirty || billingAddressCtrl.touched)" class="error">
+            Billing Address is required
+          </div>
+        </mat-form-field>
+        <div class="address-row">
+          <mat-form-field appearance="fill" class="street">
+            <a>Street <span class="required">*</span></a>
+            <input matInput required [(ngModel)]="street" name="street" #streetCtrl="ngModel">
+            <div *ngIf="streetCtrl.invalid && (streetCtrl.dirty || streetCtrl.touched)" class="error">
+              Street is required
+            </div>
+          </mat-form-field>
+          <mat-form-field appearance="fill" class="house-number">
+            <a>House Number <span class="required">*</span></a>
+            <input matInput required [(ngModel)]="houseNumber" name="houseNumber" #houseNumberCtrl="ngModel">
+            <div *ngIf="houseNumberCtrl.invalid && (houseNumberCtrl.dirty || houseNumberCtrl.touched)" class="error">
+              House Number is required
+            </div>
+          </mat-form-field>
+        </div>
+        <mat-form-field appearance="fill">
+          <a>Address Addition (optional)</a>
+          <input matInput [(ngModel)]="addressAddition" name="addressAddition">
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <a>Postal Code <span class="required">*</span></a>
+          <input matInput required [(ngModel)]="postalCode" name="postalCode" #postalCodeCtrl="ngModel">
+          <div *ngIf="postalCodeCtrl.invalid && (postalCodeCtrl.dirty || postalCodeCtrl.touched)" class="error">
+            Postal Code is required
+          </div>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <a>City <span class="required">*</span></a>
+          <input matInput required [(ngModel)]="city" name="city" #cityCtrl="ngModel">
+          <div *ngIf="cityCtrl.invalid && (cityCtrl.dirty || cityCtrl.touched)" class="error">
+            City is required
+          </div>
+        </mat-form-field>
+        <mat-form-field appearance="fill">
+          <a>Country <span class="required">*</span></a>
+          <input matInput value="Germany" disabled>
+        </mat-form-field>
+      </div>
+      <div class="button-container">
+        <button mat-raised-button color="primary" [disabled]="billingForm.invalid">Create Billing Address</button>
+      </div>
+    </form>
+  </div>

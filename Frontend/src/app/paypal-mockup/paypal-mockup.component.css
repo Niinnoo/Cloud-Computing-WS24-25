@@ -1,0 +1,127 @@
+.paypal-mockup {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    text-align: center;
+  }
+  
+  .paypal-logo {
+    width: 200px;
+    margin-bottom: 20px;
+  }
+  
+  .loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #3498db;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    margin-bottom: 20px;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  
+  .processing-text {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  
+  .success-checkmark {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .check-icon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: block;
+    stroke-width: 2;
+    stroke: #4CAF50;
+    stroke-miterlimit: 10;
+    margin: 10px auto 20px;
+    box-shadow: inset 0px 0px 0px #4CAF50;
+    animation: fill .4s ease-in-out .4s forwards, scale .3s ease-in-out .9s both;
+  }
+  
+  .check-icon .icon-line {
+    height: 5px;
+    background-color: #4CAF50;
+    display: block;
+    border-radius: 2px;
+    position: absolute;
+    z-index: 10;
+  }
+  
+  .check-icon .icon-line.line-tip {
+    width: 25px;
+    left: 14px;
+    top: 46px;
+    transform: rotate(45deg);
+    animation: icon-line-tip .3s ease-in-out .5s forwards;
+  }
+  
+  .check-icon .icon-line.line-long {
+    width: 47px;
+    right: 8px;
+    top: 38px;
+    transform: rotate(-45deg);
+    animation: icon-line-long .3s ease-in-out .5s forwards;
+  }
+  
+  .check-icon .icon-circle {
+    top: -3px;
+    left: -3px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    position: absolute;
+    z-index: 1;
+    border: 4px solid rgba(76, 175, 80, .5);
+  }
+  
+  .check-icon .icon-fix {
+    top: 8px;
+    width: 5px;
+    left: 26px;
+    position: absolute;
+    z-index: 1;
+    height: 85px;
+    transform: rotate(-45deg);
+  }
+  
+  @keyframes icon-line-tip {
+    0% { width: 0; left: 1px; top: 19px; }
+    54% { width: 0; left: 1px; top: 19px; }
+    70% { width: 50px; left: -8px; top: 37px; }
+    100% { width: 25px; left: 14px; top: 46px; }
+  }
+  
+  @keyframes icon-line-long {
+    0% { width: 0; right: 46px; top: 54px; }
+    65% { width: 0; right: 46px; top: 54px; }
+    84% { width: 55px; right: 0px; top: 35px; }
+    100% { width: 47px; right: 8px; top: 38px; }
+  }
+  
+  @keyframes fill {
+    0% { box-shadow: inset 0px 0px 0px #4CAF50; }
+    100% { box-shadow: inset 0px 0px 80px #4CAF50; }
+  }
+  
+  @keyframes scale {
+    0%, 100% { transform: none; }
+    50% { transform: scale3d(1.1, 1.1, 1); }
+  }
+  
+  .success-text {
+    font-size: 1.2em;
+    color: green;
+  }

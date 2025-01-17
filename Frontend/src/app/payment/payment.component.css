@@ -1,0 +1,54 @@
+.banner {
+    background-color: #f8f8f8;
+    text-align: center;
+  }
+  
+  .banner img {
+    height: 100px;
+    cursor: pointer;
+  }
+  
+  .container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .personal-info, .billing-address {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  mat-form-field {
+    display: block;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  
+  .address-row {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .address-row .street {
+    flex: 2;
+  }
+  
+  .address-row .house-number {
+    flex: 1;
+  }
+
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .required {
+    color: red;
+  }
+  
+  .error {
+    color: red;
+    font-size: 12px;
+  }
