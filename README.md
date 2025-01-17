@@ -48,13 +48,13 @@ Further information coming!
    Dependin on the os you use either use:
 
    ```sh
-   .\venv\Scrpipt\activate 
+   .\venv\Scripts\activate 
    ```
 
    or
 
    ```sh
-   .\venv\Scrpipt\activate.bat 
+   .\venv\Scripts\activate.bat 
    ```
 
    or
