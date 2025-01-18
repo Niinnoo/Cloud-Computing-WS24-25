@@ -1,16 +1,18 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewChild} from '@angular/core';
 import {Router, RouterModule} from '@angular/router';
 import {Product} from '../../models/product.model';
 import {ProductService} from '../../services/product/product.service';
 import {MatDialog} from '@angular/material/dialog';
-import {MatTableModule} from '@angular/material/table';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatButtonModule} from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import {ProductAdminDialogComponent} from '../product-admin-dialog/product-admin-dialog.component';
-import {map, Observable} from 'rxjs';
+import {MatIconModule} from '@angular/material/icon';
+import {MatSort, MatSortModule} from '@angular/material/sort';
+import {MatPaginator} from '@angular/material/paginator';
 
 @Component({
   selector: 'app-admin-panel',
@@ -22,25 +24,35 @@ import {map, Observable} from 'rxjs';
     MatInputModule,
     MatDialogModule,
     ReactiveFormsModule,
+    MatIconModule,
+    MatSortModule,
+    MatPaginator,
   ],
   providers: [],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.css'
 })
 export class AdminPanelComponent implements OnInit {
-  //products: Product[] = [];
-  dataSource$!: Observable<Product[]>;
+  dataSource = new MatTableDataSource<Product>();
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private router:Router, private productService: ProductService, private dialog: MatDialog) {
-    //this.products$ = this.productService.products$;
+
   }
 
   ngOnInit() {
-    //this.productService.getProducts().subscribe((products) => (this.products = products));
+    this.loadProducts();
+  }
+
+  loadProducts(){
     this.productService.fetchProducts();
-    this.dataSource$ = this.productService.products$.pipe(
-      map((products) => products || [])
-    );
+    this.productService.products$.subscribe((products) => {
+      this.dataSource.data = products;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+    });
   }
 
   onAddProduct() {
@@ -71,5 +83,18 @@ export class AdminPanelComponent implements OnInit {
 
   onDeleteProduct(id: number) {
     //this.productService.deleteProduct(id);
+  }
+
+  onBackButtonClick() {
+    this.router.navigate(['']);
+  }
+
+  applyFilter(event: KeyboardEvent) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

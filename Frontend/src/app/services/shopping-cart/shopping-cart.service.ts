@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { CartItem} from '../../models/cart-item.model';
+import { CartItem } from '../../models/cart-item.model';
+import {Product} from '../../models/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ export class CartService {
   private cartItems = new BehaviorSubject<CartItem[]>([]);
   cartItems$ = this.cartItems.asObservable();
 
-  addToCart(product: any) {
+  addToCart(product: Product) {
     const currentItems = this.cartItems.getValue();
     const existingItem = currentItems.find(item => item.id === product.id);
 

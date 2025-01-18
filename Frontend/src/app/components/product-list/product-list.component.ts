@@ -16,6 +16,7 @@ import { CartService } from '../../services/shopping-cart/shopping-cart.service'
 import { Router, RouterModule } from '@angular/router';
 import {ProductService} from '../../services/product/product.service';
 import {Product} from '../../models/product.model';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-product-list',
@@ -30,46 +31,43 @@ import {Product} from '../../models/product.model';
     MatButtonModule,
     FormsModule,
     CommonModule,
-    MatOption,
     MatSelectModule,
     MatIconModule,
     MatBadgeModule,
-    RouterModule
+    RouterModule,
+    MatCardModule
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
 })
-export class ProductListComponent implements AfterViewInit, OnInit {
-  dataSource: MatTableDataSource<Product>;
-  filteredDataSource: MatTableDataSource<any>;
+export class ProductListComponent implements OnInit {
+  dataSource = new MatTableDataSource<Product>();
   columnsToDisplay = ['addToCart', 'name', 'description', 'price', 'category'];
-  selectedCategories: string[] = [];
   uniqueCategories: string[] = [];
+  isTableView: boolean = true;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private dialog: MatDialog, private cartService: CartService, private router: Router, private productService: ProductService) {
-    this.dataSource = new MatTableDataSource<Product>([]);
-    this.filteredDataSource = this.dataSource;
+  constructor(
+    private dialog: MatDialog,
+    private cartService: CartService,
+    private router: Router,
+    private productService: ProductService)
+  {
   }
 
   ngOnInit() {
     this.loadProducts();
   }
 
-  ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-  }
-
   loadProducts(){
-    this.productService.products$.subscribe(products => {
-      if (products) {
-        this.dataSource.data = products;
-        this.filteredDataSource.data = products;
-        this.uniqueCategories = this.getUniqueCategories(products);
-      }
+    this.productService.fetchProducts();
+    this.productService.products$.subscribe((products) => {
+      this.dataSource.data = products;
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
+      this.uniqueCategories = this.getUniqueCategories(products);
     });
   }
 
@@ -82,7 +80,7 @@ export class ProductListComponent implements AfterViewInit, OnInit {
     return this.cartService.getTotalQuantity();
   }
 
-  addToCart(product: any) {
+  addToCart(product: Product) {
     this.cartService.addToCart(product);
   }
 
@@ -95,19 +93,11 @@ export class ProductListComponent implements AfterViewInit, OnInit {
     }
   }
 
-  applyCategoryFilter() {
-    if (this.selectedCategories.length > 0) {
-      this.filteredDataSource.data = this.dataSource.data.filter(product =>
-        this.selectedCategories.includes(product.category_name)
-      );
-    } else {
-      this.filteredDataSource.data = this.dataSource.data;
-    }
-    this.filteredDataSource.paginator = this.paginator;
+  toggleView() {
+    this.isTableView = !this.isTableView;
   }
 
-  showDetails(productId: number) {
-    const product = this.dataSource.data.find((product: any) => product.id === productId);
+  showDetails(product: number) {
     if (product) {
       this.dialog.open(ProductDetailsDialogComponent, {
         data: product

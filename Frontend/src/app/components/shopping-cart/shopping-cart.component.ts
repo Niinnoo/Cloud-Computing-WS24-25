@@ -66,4 +66,6 @@ export class ShoppingCartComponent {
   onCheckoutClick() {
     this.router.navigate(['checkout']);
   }
+
+  protected readonly parseFloat = parseFloat;
 }
