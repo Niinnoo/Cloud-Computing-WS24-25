@@ -1,0 +1,14 @@
+<div class="paypal-mockup">
+    <img src="assets/paypal_logo.png" alt="PayPal Logo" class="paypal-logo">
+    <div *ngIf="!paymentSuccess" class="loader"></div>
+    <p *ngIf="!paymentSuccess" class="processing-text">Processing...</p>
+    <div *ngIf="paymentSuccess" class="success-checkmark">
+      <div class="check-icon">
+        <span class="icon-line line-tip"></span>
+        <span class="icon-line line-long"></span>
+        <div class="icon-circle"></div>
+        <div class="icon-fix"></div>
+      </div>
+      <p class="success-text">Payment successful</p>
+    </div>
+  </div>

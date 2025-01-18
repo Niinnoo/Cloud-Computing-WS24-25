@@ -1,0 +1,59 @@
+.order-overview {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .content {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .left-column, .right-column {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .left-column {
+    flex: 2;
+  }
+  
+  .right-column {
+    flex: 1;
+  }
+  
+  .card-row {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .half-width {
+    flex: 1;
+  }
+  
+  .salutation {
+    font-size: 1em;
+    margin-bottom: 5px;
+  }
+  
+  mat-card-title {
+    font-size: 1.1em;
+  }
+  
+  mat-card-content p {
+    font-size: 0.9em;
+  }
+  
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 10px;
+  }
+  
+  button {
+    font-size: 0.9em;
+  }

@@ -1,1 +1,23 @@
-<p>checkout works!</p>
+<div class="banner">
+    <img (click)="goBackToHome()" src="assets/online-shop.svg" alt="Logo">
+</div>
+
+<div class="container">
+  <div class="left">
+    <h2>Have already an account?</h2>
+    <mat-form-field appearance="fill">
+      <mat-label>E-Mail</mat-label>
+      <input class="mail" matInput placeholder="E-Mail">
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Password</mat-label>
+      <input class="password" matInput type="password" placeholder="Password">
+    </mat-form-field>
+    <button mat-raised-button color="primary">Login</button>
+  </div>
+  <div class="right">
+    <h2>An account is worth it!</h2>
+    <button mat-raised-button color="accent">Create account</button>
+    <button mat-raised-button color="warn" (click)="payAsGuest()">Pay as guest</button>
+  </div>
+</div>

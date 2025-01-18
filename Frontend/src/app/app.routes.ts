@@ -1,12 +1,16 @@
 import { Routes } from '@angular/router';
-import { ProductListComponent } from './components/product-list/product-list.component';
-import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
-import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
+import { ProductListComponent } from './product-list/product-list.component';
+import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './checkout/checkout.component';
+import { PaymentComponent } from './payment/payment.component';
+import { ProcessingComponent } from './processing/processing.component';
+import { PaypalMockupComponent } from './paypal-mockup/paypal-mockup.component';
 
 export const routes: Routes = [
-  {path: '', component: ProductListComponent},
-  {path: 'cart', component: ShoppingCartComponent},
-  {path: 'checkout', component: CheckoutComponent},
-  {path: 'admin', component: AdminPanelComponent},
+    {path: '', component: ProductListComponent},
+    {path: 'cart', component: ShoppingCartComponent},
+    {path: 'checkout', component: CheckoutComponent},
+    {path: 'payment', component: PaymentComponent},
+    {path: 'payment/processing', component: ProcessingComponent},
+    {path: 'payment/paypal', component: PaypalMockupComponent}
 ];
