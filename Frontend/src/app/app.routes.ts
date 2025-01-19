@@ -1,10 +1,11 @@
 import { Routes } from '@angular/router';
-import { ProductListComponent } from './product-list/product-list.component';
-import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { CheckoutComponent } from './checkout/checkout.component';
-import { PaymentComponent } from './payment/payment.component';
-import { ProcessingComponent } from './processing/processing.component';
-import { PaypalMockupComponent } from './paypal-mockup/paypal-mockup.component';
+import { ProductListComponent} from './components/product-list/product-list.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { PaymentComponent } from './components/payment/payment.component';
+import { ProcessingComponent } from './components/processing/processing.component';
+import { PaypalMockupComponent } from './components/paypal-mockup/paypal-mockup.component';
+import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
 
 export const routes: Routes = [
     {path: '', component: ProductListComponent},
@@ -12,5 +13,6 @@ export const routes: Routes = [
     {path: 'checkout', component: CheckoutComponent},
     {path: 'payment', component: PaymentComponent},
     {path: 'payment/processing', component: ProcessingComponent},
-    {path: 'payment/paypal', component: PaypalMockupComponent}
+    {path: 'payment/paypal', component: PaypalMockupComponent},
+  {path: 'admin', component: AdminPanelComponent},
 ];

@@ -1,0 +1,35 @@
+.banner {
+  background-color: #f8f8f8;
+  text-align: center;
+}
+
+.banner img {
+  height: 200px;
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+}
+
+.left, .right {
+  flex: 1;
+  padding: 20px;
+  text-align: center;
+}
+
+.left {
+  border-right: 1px solid #ccc;
+}
+
+mat-form-field {
+  display: block;
+  margin-bottom: 20px;
+}
+
+.mail, .password {
+  display: block;
+  margin: 0 auto;
+}
