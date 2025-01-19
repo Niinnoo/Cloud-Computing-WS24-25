@@ -42,6 +42,7 @@ import {MatCardModule} from '@angular/material/card';
 })
 export class ProductListComponent implements OnInit {
   dataSource = new MatTableDataSource<Product>();
+  filteredProducts = [...this.dataSource.data];
   columnsToDisplay = ['addToCart', 'name', 'description', 'price', 'category'];
   uniqueCategories: string[] = [];
   isTableView: boolean = true;
@@ -86,7 +87,15 @@ export class ProductListComponent implements OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    const searchText = filterValue.trim().toLowerCase();
+
+    this.dataSource.filter = searchText;
+
+    this.filteredProducts = this.dataSource.data.filter(product =>
+      product.name.toLowerCase().includes(searchText) ||
+      product.category_name.toLowerCase().includes(searchText) ||
+      product.short_description.toLowerCase().includes(searchText)
+    );
 
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
