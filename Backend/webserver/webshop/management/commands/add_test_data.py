@@ -4,6 +4,12 @@ from webshop.models import ProductCategory, Product
 from django.core.files.base import ContentFile
 from io import BytesIO
 import requests
+from django.core.files import File
+
+# Path to the default image
+DEFAULT_IMAGE_PATH = "/home/paul/Cloud-Computing-WS24-25/Backend/webserver/media/product_images/default.jpg"
+
+
 
 class Command(BaseCommand):
     help = "Populate the database with 5 categories and 15 products (books)."
@@ -33,7 +39,7 @@ class Command(BaseCommand):
                 "long_description": "Harper Lee's classic novel explores racism and justice in a small Southern town.",
                 "category": category_objects[0],
                 "stock": 10,
-                "image_url": 'product_images/default.jpg'
+                "image_url": 'media/product_images/default.jpg'
             },
             {
                 "name": "Sapiens: A Brief History of Humankind",
@@ -177,3 +183,21 @@ class Command(BaseCommand):
             )
 
         self.stdout.write(self.style.SUCCESS("Database successfully populated with categories and 15 products!"))
+        # Assign the default image to all products
+        def assign_default_image_to_products():
+            try:
+                with open(DEFAULT_IMAGE_PATH, 'rb') as default_image:
+                    for product in Product.objects.all():
+                        if not product.image:  # Only update products without an image
+                            product.image.save(
+                                "default.jpg",
+                                File(default_image),
+                                save=True
+                            )
+                            print(f"Assigned default image to product: {product.name}")
+            except FileNotFoundError:
+                print(f"Default image not found at {DEFAULT_IMAGE_PATH}.")
+
+        # Run the function
+        assign_default_image_to_products()
+
