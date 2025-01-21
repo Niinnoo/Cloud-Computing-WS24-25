@@ -78,7 +78,7 @@
   </table>
 
   <!-- Paginator for Table -->
-  <mat-paginator [pageSize]="5" [pageSizeOptions]="[5, 10, 20]" aria-label="Select Page" *ngIf="isTableView"></mat-paginator>
+  <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" aria-label="Select Page" *ngIf="isTableView"></mat-paginator>
 
   <div class="product-grid" *ngIf="!isTableView">
     <mat-card class="product-tile" *ngFor="let product of filteredProducts">

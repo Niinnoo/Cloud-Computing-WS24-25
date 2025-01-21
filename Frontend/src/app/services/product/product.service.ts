@@ -7,7 +7,8 @@ import {HttpClient} from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProductService {
-  private apiURL = 'http://localhost:8080/webshop/';
+  private PORT: number = 8080;
+  private apiURL = 'http://localhost:' + this.PORT + '/webshop/';
   private productsSubject = new BehaviorSubject<Product[]>([]);
   products$ = this.productsSubject.asObservable();
 

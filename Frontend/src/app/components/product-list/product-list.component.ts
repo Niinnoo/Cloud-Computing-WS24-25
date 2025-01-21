@@ -46,8 +46,10 @@ export class ProductListComponent implements OnInit {
   columnsToDisplay = ['addToCart', 'name', 'description', 'price', 'category'];
   uniqueCategories: string[] = [];
   isTableView: boolean = true;
+  pageIndex: number = 0;
+  pageSize: number = 0;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator) paginator!: MatPaginator | null;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
@@ -69,6 +71,7 @@ export class ProductListComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
       this.uniqueCategories = this.getUniqueCategories(products);
+      this.filteredProducts = this.dataSource.data;
     });
   }
 
