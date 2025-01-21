@@ -14,6 +14,7 @@ class Product(models.Model):
     long_description = models.CharField(max_length=500)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='products')
     stock = models.IntegerField()
+    image = models.ImageField(upload_to='product_images/')
 
     def __str__(self):
         return self.name
