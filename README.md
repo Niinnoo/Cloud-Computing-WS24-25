@@ -75,5 +75,9 @@ Further information coming!
 
    Go into the folder **webserver** (in your console having the venv activated)
    ```sh
-   python manage.py runserver
+   python manage.py runserver 8080
    ```
+
+# Mailing service instructions
+
+For the service to work, navigate to */Backend/webserver* and change the variables `EMAIL_HOST_USER` and `EMAIL_HOST_PASSWORD`. Use the appropriate values for your use case.
