@@ -19,14 +19,17 @@ Ensure all prerequisites are installed by following the instructions on the Angu
    cd Frontend
    ```
 
-2. Open a terminal in this directory.
+2. Open a terminal in this directory and enter the following command:
+    ```sh
+   npm install
+   ```
 
-3. Start the Angular project:
+4. Start the Angular project:
    ```sh
    npm start
    ```
 
-4. Open the website in your browser:
+5. Open the website in your browser:
    ```
    http://localhost:4200/
    ```
