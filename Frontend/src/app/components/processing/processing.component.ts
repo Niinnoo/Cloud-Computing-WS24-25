@@ -23,7 +23,7 @@ export class ProcessingComponent {
 
   constructor(private router: Router) {}
 
-  chancelOrder() {
+  cancelOrder() {
     this.router.navigate(['payment']);
   }
 

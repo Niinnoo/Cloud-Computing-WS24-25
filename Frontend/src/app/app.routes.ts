@@ -6,6 +6,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 import { ProcessingComponent } from './components/processing/processing.component';
 import { PaypalMockupComponent } from './components/paypal-mockup/paypal-mockup.component';
 import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
+import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 
 export const routes: Routes = [
     {path: '', component: ProductListComponent},
@@ -14,5 +15,6 @@ export const routes: Routes = [
     {path: 'payment', component: PaymentComponent},
     {path: 'payment/processing', component: ProcessingComponent},
     {path: 'payment/paypal', component: PaypalMockupComponent},
-  {path: 'admin', component: AdminPanelComponent},
+    {path: 'admin', component: AdminPanelComponent},
+    {path: 'order-summary', component: OrderSummaryComponent}
 ];

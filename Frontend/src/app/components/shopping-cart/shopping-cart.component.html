@@ -48,5 +48,5 @@
 
 <div class="total-cost">
   <h3>Total: {{getTotalCost().toFixed(2)}}€</h3>
-  <button mat-raised-button color="primary" (click)="onCheckoutClick()">Checkout</button>
+  <button mat-raised-button color="primary" (click)="onCheckoutClick()" [disabled]="emptyCart">Checkout</button>
 </div>

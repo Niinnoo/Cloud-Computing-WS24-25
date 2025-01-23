@@ -25,6 +25,7 @@ import { Router } from '@angular/router';
 })
 export class ShoppingCartComponent {
   showCheckout: boolean = false;
+  emptyCart: boolean = true;
   displayedColumns: string[] = ['name', 'price', 'quantity', 'total', 'actions'];
   dataSource = new MatTableDataSource<CartItem>([]);
   cartItems: CartItem[] = [];
@@ -40,6 +41,11 @@ export class ShoppingCartComponent {
       this.cartItems = items;
       this.dataSource.data = items;
     });
+    this.updateCartStatus();
+  }
+
+  updateCartStatus() {
+    this.emptyCart = this.cartItems.length === 0;
   }
 
   getTotalCost() {
@@ -48,15 +54,18 @@ export class ShoppingCartComponent {
 
   addQuantity(item: CartItem) {
     this.cartService.updateQuantity(item, true);
+    this.updateCartStatus();
   }
 
   removeQuantity(item: CartItem) {
     this.cartService.updateQuantity(item, false);
+    this.updateCartStatus();
   }
 
   removeFromCart(item: CartItem) {
     this.cartService.removeFromCart(item);
     this.snackBar.open('Item removed from cart', 'Close', { duration: 2000 });
+    this.updateCartStatus();
   }
 
   onBackClick() {

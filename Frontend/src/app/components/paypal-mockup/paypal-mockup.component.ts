@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-paypal-mockup',
@@ -11,9 +12,14 @@ import { CommonModule } from '@angular/common';
 export class PaypalMockupComponent implements OnInit {
   paymentSuccess = false;
 
+  constructor(private router: Router) {}
+
   ngOnInit() {
     setTimeout(() => {
       this.paymentSuccess = true;
-    }, 3000); // Zeigt die Nachricht nach 3 Sekunden an
+      setTimeout(() => {
+        this.router.navigate(['order-summary']);
+      }, 2000); // navigate to order summary after 2 seconds
+    }, 2000); // simulate 2 second payment processing
   }
 }

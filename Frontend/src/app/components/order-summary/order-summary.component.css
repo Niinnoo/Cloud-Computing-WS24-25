@@ -1,0 +1,21 @@
+.thank-you {
+    text-align: center;
+    margin-top: 50px;
+  }
+  
+  .thank-you h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  .thank-you p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+  }
+  
+  .thank-you a {
+    font-size: 1em;
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+  }
