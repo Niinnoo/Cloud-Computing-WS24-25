@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'webshop',
     'corsheaders',
+    'emailservice',
 ]
 
 MIDDLEWARE = [
@@ -104,6 +105,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# Mail Settings
+DEBUG = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'secret in group'  # E-Mail adress from which the mails are sent
+EMAIL_HOST_PASSWORD = 'secret in group'  # Application Password from Gmail
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -132,5 +141,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",  # Angular App
 ]
 
-MEDIA_URL = 'webshop/media/'
+MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
