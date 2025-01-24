@@ -111,8 +111,8 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = 'secret in group'  # E-Mail adress from which the mails are sent
-EMAIL_HOST_PASSWORD = 'secret in group'  # Application Password from Gmail
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')  # E-Mail adress from which the mails are sent
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')  # Application Password from Gmail
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
