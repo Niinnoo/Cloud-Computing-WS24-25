@@ -2,8 +2,6 @@
 
 This project will implement the tasks of the course "Cloud Computing (WiSe 2024)" from Mr. Cocos at the Frankfurt Univ. of Appl. Sciences.
 
-Sure, here's a formatted version for your repository README:
-
 # Frontend Setup Instructions
 
 To get the frontend up and running, follow these steps:
