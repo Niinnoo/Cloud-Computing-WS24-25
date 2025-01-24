@@ -83,4 +83,7 @@ Further information coming!
 
 # Mailing service instructions
 
-For the service to work, navigate to */Backend/webserver* and change the variables `EMAIL_HOST_USER` and `EMAIL_HOST_PASSWORD`. Use the appropriate values for your use case.
+For the service to work, change the environment variables `EMAIL_HOST_USER` (e-mail) and `EMAIL_HOST_PASSWORD` (password). Use the appropriate values for your use case. Or use the following command
+   ```sh
+   python manage.py runserver_with_env 8080 EMAIL_HOST_USER EMAIL_HOST_PASSWORD
+   ```
