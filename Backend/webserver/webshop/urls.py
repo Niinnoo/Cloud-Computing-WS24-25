@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf.urls.static import static
 from django.conf import settings
 
-from .views import ProductView, CategoryView, inventory, place_order, order_status
+from .views import ProductView, CategoryView, inventory, place_order, OrderView
 
 # the url in the webbrowser will be: *base address*/webshop/*url name*
 urlpatterns =[
@@ -11,5 +11,7 @@ urlpatterns =[
     path('product/<int:id>', ProductView.ProductView.as_view(), name='product'),
     path('product', ProductView.ProductView.as_view(), name='product'),
     path('category', CategoryView.CategoryView.as_view(), name='category'),
+    path('order/<int:id>', OrderView.OrderView.as_view(), name='order'),
+    path('order', OrderView.OrderView.as_view(), name='order'),
 ] 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

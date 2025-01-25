@@ -141,5 +141,5 @@ CORS_ALLOWED_ORIGINS = [
     "http://localhost:4200",  # Angular App
 ]
 
-MEDIA_URL = '/media/'
+MEDIA_URL = 'webshop/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
