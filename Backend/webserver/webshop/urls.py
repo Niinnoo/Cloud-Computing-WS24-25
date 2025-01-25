@@ -14,4 +14,3 @@ urlpatterns =[
     path('order/<int:id>', OrderView.OrderView.as_view(), name='order'),
     path('order', OrderView.OrderView.as_view(), name='order'),
 ] 
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
