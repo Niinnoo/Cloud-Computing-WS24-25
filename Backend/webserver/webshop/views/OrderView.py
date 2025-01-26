@@ -11,7 +11,35 @@ class OrderData(Enum):
     ORDER_ITEMS = 'order_items'
 
 class OrderView(APIView):
-
+    
+    # This GET request will return a json which contains the information of an order and  a list containing all order items 
+    # Example request: http://localhost:8000/webshop/order/1
+    # Example response:
+    '''
+    {
+    "order": {
+        "id": 1,
+        "customer_firstname": "Max",
+        "customer_lastname": "Mustermann",
+        "customer_email": "mustermann@gmail.com",
+        "created_at": "2025-01-24T21:24:45.982851Z",
+        "status": "PENDING",
+        "total_price": "29.99",
+        "order_date": "2025-01-24T21:24:45.982851Z"
+    },
+    "order_items": [
+        {
+        "id": 1,
+        "order_id": 1,
+        "product_id": 69,
+        "quantity": 1,
+        "unit_price": "29.99",
+        "total_price": "29.99"
+        },
+        {...}
+    ]
+    }
+    '''
     def get(self, request, id):
         order = get_object_or_404(Order, id=id)
         order_serializer = OrderSerializer(order)
@@ -25,16 +53,17 @@ class OrderView(APIView):
         
         return Response(response)
 
+    # POST request tot create a new order and corresponding order items
+    # request has to contain a json with the order information and a list of order_items
+    # Example request http://localhost:8000/webshop/order
     def post(self, request):
-        order_serializer = OrderSerializer(data=request.data.get(OrderData.ORDER.value))
-        
+        order_data = request.data.get(OrderData.ORDER.value)
+        order_serializer = OrderSerializer(data=order_data)        
 
         if order_serializer.is_valid():
-            
             order_serializer.save()
             
             order_items = request.data.get(OrderData.ORDER_ITEMS.value)
-            print(order_items)
             
             for item in order_items:
                 item_serializer = OrderItemSerializer(data=item)
@@ -42,7 +71,9 @@ class OrderView(APIView):
                 if item_serializer.is_valid():
                     item_serializer.save()
                     
-            return Response(order_serializer.data, status=status.HTTP_201_CREATED)
+                    
+            response = {'order': order_serializer.data, 'order_items' : item_serializer.data}
+            return Response(response, status=status.HTTP_201_CREATED)
 
         return Response(order_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
         
