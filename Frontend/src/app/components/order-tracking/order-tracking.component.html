@@ -1,0 +1,51 @@
+<mat-toolbar class="toolbar">
+    <img src="assets/online-shop.svg" alt="Logo" class="logo" [routerLink]="['']">
+    <span class="spacer"></span>
+    <button mat-icon-button aria-label="Login">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+  </mat-toolbar>
+  
+  <div class="container">
+    <mat-card *ngIf="showSearch" class="tracking-card">
+      <mat-card-header>
+        <mat-card-title>Keep track of your packages</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="search-container">
+            <mat-form-field appearance="outline" [class.mat-form-field-invalid]="trackingError">
+                <mat-label>Enter order ID</mat-label>
+                <input matInput 
+                       [(ngModel)]="orderId" 
+                       (ngModelChange)="onInputChange()"
+                       placeholder="Order ID">
+                <mat-error *ngIf="trackingError">
+                  Invalid order ID. Please check and try again.
+                </mat-error>
+              </mat-form-field>
+          <button mat-raised-button color="primary" (click)="trackOrder()">Track</button>
+        </div>
+        <p class="info-text">
+          Tracking information for your packages. Stay informed about the status and delivery of your packages.
+        </p>
+      </mat-card-content>
+    </mat-card>
+  
+    <mat-card *ngIf="orderData" class="order-details">
+      <mat-card-header>
+        <mat-card-title>Order Details #{{orderData.order.id}}</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <p><strong>Customer:</strong> {{orderData.order.customer_firstname}} {{orderData.order.customer_lastname}}</p>
+        <p><strong>Status:</strong> {{orderData.order.status}}</p>
+        <p><strong>Order Date:</strong> {{orderData.order.order_date | date}}</p>
+        <p><strong>Total Price:</strong> {{orderData.order.total_price}}€</p>
+        
+        <h3>Order Items:</h3>
+        <div *ngFor="let item of orderData.order_items" class="order-item">
+          <p>Quantity: {{item.quantity}} x {{item.unit_price}}€</p>
+          <p>Total: {{item.total_price}}€</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
