@@ -7,26 +7,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatCardModule } from '@angular/material/card';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Router, RouterModule } from '@angular/router';
-import { HttpClient } from '@angular/common/http';
-
-interface OrderResponse {
-  order: {
-    id: string;
-    customer_firstname: string;
-    customer_lastname: string;
-    customer_email: string;
-    status: string;
-    total_price: number;
-    order_date: string;
-  };
-  order_items: Array<{
-    product_id: number;
-    quantity: number;
-    unit_price: number;
-    total_price: number;
-  }>;
-}
+import { RouterModule } from '@angular/router';
+import { OrderService } from '../../services/order/order.service';
+import { ProductService } from '../../services/product/product.service';
+import { OrderResponse } from '../../models/order.model';
 
 @Component({
   selector: 'app-order-tracking',
@@ -50,25 +34,38 @@ export class OrderTrackingComponent {
   orderData: OrderResponse | null = null;
   showSearch: boolean = true;
   trackingError: boolean = false;
+  productDetails: any[] = [];
 
-  constructor(private router: Router, private http: HttpClient) {}
+  constructor(private orderService: OrderService, private productService: ProductService) {}
 
   trackOrder() {
     if (!this.orderId) return;
     this.trackingError = false;
     
-    this.http.get<OrderResponse>(`http://127.0.0.1:8080/webshop/order/${this.orderId}`)
-      .subscribe({
-        next: (response) => {
-          this.orderData = response;
-          this.showSearch = false;
-          this.trackingError = false;
-        },
-        error: (error) => {
-          console.error('Error fetching order:', error);
-          this.trackingError = true;
-        }
-      });
+    this.orderService.getOrder(this.orderId).subscribe({
+      next: (response) => {
+        this.orderData = response;
+        this.showSearch = false;
+        this.trackingError = false;
+      
+        this.productDetails = [];
+        const orderItems = response.order_items;
+        orderItems.forEach((item: any) => {
+          this.productService.getProductById(item.product_id).subscribe({
+            next: (product) => {
+              this.productDetails.push(product);
+            },
+            error: (error) => {
+              console.error('Error fetching product details:', error);
+            }
+          });
+        });
+      },
+      error: (error) => {
+        console.error('Error fetching order:', error);
+        this.trackingError = true;
+      }
+    });
   }
 
   onInputChange() {

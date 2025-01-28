@@ -23,6 +23,5 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('webshop/', include("webshop.urls")),
-    path('emailservice/', include('emailservice.urls'))
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

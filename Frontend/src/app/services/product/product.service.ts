@@ -79,4 +79,13 @@ export class ProductService {
       )
       .subscribe();
   }
+
+  getProductById(productId: number) {
+    return this.http.get<Product>(`${this.apiURL}product/${productId}`).pipe(
+      catchError((error) => {
+        console.error('Error while fetching product', error);
+        throw error;
+      })
+    );
+  }
 }
