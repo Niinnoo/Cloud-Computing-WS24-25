@@ -3,7 +3,7 @@
   <p><strong>Name:</strong> {{ data.name }}</p>
   <p><strong>Description:</strong> {{ data.long_description }}</p>
   <p><strong>Price:</strong> {{ data.price }}€</p>
-  <p><strong>Category:</strong> {{ data.category_name }}</p>
+  <p><strong>CategoryModel:</strong> {{ data.category_name }}</p>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-icon-button (click)="addToCart(data); $event.stopPropagation()">

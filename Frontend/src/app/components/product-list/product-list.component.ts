@@ -43,7 +43,7 @@ import {MatCardModule} from '@angular/material/card';
 export class ProductListComponent implements OnInit {
   dataSource = new MatTableDataSource<Product>();
   filteredProducts = [...this.dataSource.data];
-  columnsToDisplay = ['addToCart', 'name', 'description', 'price', 'category'];
+  columnsToDisplay = ['addToCart', 'image', 'name', 'description', 'price', 'category'];
   uniqueCategories: string[] = [];
   isTableView: boolean = true;
   pageIndex: number = 0;

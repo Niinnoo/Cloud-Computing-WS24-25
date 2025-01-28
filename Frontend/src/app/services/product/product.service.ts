@@ -2,17 +2,19 @@ import { Injectable } from '@angular/core';
 import {Product} from '../../models/product.model';
 import {BehaviorSubject, catchError, tap} from 'rxjs';
 import {HttpClient} from '@angular/common/http';
+import {BackendUrlService} from '../backend-url/backend-url.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
-  private PORT: number = 8080;
-  private apiURL = 'http://localhost:' + this.PORT + '/webshop/';
+  private apiURL: string;
   private productsSubject = new BehaviorSubject<Product[]>([]);
   products$ = this.productsSubject.asObservable();
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private backendURL: BackendUrlService) {
+    this.apiURL = backendURL.getBackendUrl();
+  }
 
   fetchProducts(): void {
     this.http.get<Product[]>(`${this.apiURL}inventory`)
@@ -44,7 +46,7 @@ export class ProductService {
 
   updateProduct(product: Product): void {
     this.http
-      .put<Product>(`${this.apiURL}product/${product.id}`, product)
+      .patch<Product>(`${this.apiURL}product/${product.id}`, product)
       .pipe(
         tap((updatedProduct) => {
           const currentProducts = this.productsSubject.getValue();
@@ -63,7 +65,7 @@ export class ProductService {
 
   deleteProduct(productId: number): void {
     this.http
-      .delete<void>(`${this.apiURL}products/${productId}`)
+      .delete<void>(`${this.apiURL}product/${productId}`)
       .pipe(
         tap(() => {
           const currentProducts = this.productsSubject.getValue();
