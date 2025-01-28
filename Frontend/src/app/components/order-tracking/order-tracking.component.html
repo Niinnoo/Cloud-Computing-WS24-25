@@ -42,10 +42,12 @@
         <p><strong>Total Price:</strong> {{orderData.order.total_price}}€</p>
         
         <h3>Order Items:</h3>
-        <div *ngFor="let item of orderData.order_items" class="order-item">
-          <p>Quantity: {{item.quantity}} x {{item.unit_price}}€</p>
-          <p>Total: {{item.total_price}}€</p>
-        </div>
+        <ul>
+          <li *ngFor="let product of productDetails">
+            <p>Product Name: {{ product.name }}</p>
+            <p>Price: {{ product.price }}</p>
+          </li>
+        </ul>
       </mat-card-content>
     </mat-card>
   </div>

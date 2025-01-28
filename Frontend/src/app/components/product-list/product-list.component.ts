@@ -17,6 +17,7 @@ import { Router, RouterModule } from '@angular/router';
 import {ProductService} from '../../services/product/product.service';
 import {Product} from '../../models/product.model';
 import {MatCardModule} from '@angular/material/card';
+import { MatToolbarModule } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-product-list',
@@ -35,7 +36,8 @@ import {MatCardModule} from '@angular/material/card';
     MatIconModule,
     MatBadgeModule,
     RouterModule,
-    MatCardModule
+    MatCardModule,
+    MatToolbarModule
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
@@ -117,11 +119,11 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  onCartButtonClick() {
+  onRightIcon1Click() {
     this.router.navigate(['/cart']);
   }
 
-  onAdminButtonClick() {
+  onRightIcon2Click() {
     this.router.navigate(['/admin']);
   }
 }

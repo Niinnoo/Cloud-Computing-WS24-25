@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'webshop',
     'corsheaders',
-    'emailservice',
 ]
 
 MIDDLEWARE = [
