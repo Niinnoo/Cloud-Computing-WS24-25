@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from enum import Enum
 from ..models import Order, OrderItem
 from ..serializers import OrderSerializer, OrderItemSerializer
+from ..stock_management.StockManager import StockManager
 
 class OrderData(Enum):
     ORDER = 'order'
