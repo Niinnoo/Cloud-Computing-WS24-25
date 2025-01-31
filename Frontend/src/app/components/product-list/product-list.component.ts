@@ -126,4 +126,8 @@ export class ProductListComponent implements OnInit {
   onRightIcon2Click() {
     this.router.navigate(['/admin']);
   }
+
+  goBackHome() {
+    this.router.navigate(['']);
+  }
 }
