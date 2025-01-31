@@ -1,7 +1,4 @@
-import os
-import threading
 from rest_framework.views import APIView
-from django.core.mail import send_mail
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
@@ -9,6 +6,7 @@ from enum import Enum
 from ..models import Order, OrderItem
 from ..serializers import OrderSerializer, OrderItemSerializer
 from ..stock_management.StockManager import StockManager
+from ..email_service.EmailService import EmailService
 
 class OrderData(Enum):
     ORDER = 'order'
@@ -77,24 +75,13 @@ class OrderView(APIView):
                     
             response = {'order': order_serializer.data, 'order_items' : item_serializer.data}
                     
-            def send_order_confirmation_email():
-                subject = 'Order Confirmation'
-                message = f"Thank you for your order, {order_data['customer_firstname']} {order_data['customer_lastname']}!"
-                recipient_list = [order_data['customer_email']]
-                
-                send_mail(
-                    subject,
-                    message,
-                    os.getenv('EMAIL_HOST_USER'),  # Absender
-                    #recipient_list,
-                    ['nino.zoric@yahoo.de'],  # Empfänger
-                    fail_silently=False,
-                )
             
-            email_thread = threading.Thread(target=send_order_confirmation_email)
-            email_thread.start()        
+            
+            email_service = EmailService(order_data)
+            email_service.start()
 
             return Response(response, status=status.HTTP_201_CREATED)
 
         return Response(order_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-        
+    
+    

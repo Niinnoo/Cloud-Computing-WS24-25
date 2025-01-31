@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-s%u)x997g#%i_56_6x)jy7)z&_aa(74pn)5s%(1x7li(tvmy7v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['52.200.8.203', 'ec2-52-200-8-203.compute-1.amazonaws.com']
+ALLOWED_HOSTS = ['52.200.8.203', 'ec2-52-200-8-203.compute-1.amazonaws.com', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -90,7 +90,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ccwebshopdb',
         'USER': 'dbuser',
-        'PASSWORD': '***',
+        'PASSWORD': '$wcGJTi?)2W#gj',
         'HOST': 'ccwebshopdb.cfhfs5nbkdiz.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
