@@ -8,9 +8,11 @@ import { PaypalMockupComponent } from './components/paypal-mockup/paypal-mockup.
 import {AdminPanelComponent} from './components/admin-panel/admin-panel.component';
 import { OrderSummaryComponent } from './components/order-summary/order-summary.component';
 import { OrderTrackingComponent } from './components/order-tracking/order-tracking.component';
+import { FrontpageComponent } from './components/frontpage/frontpage.component';
 
 export const routes: Routes = [
-    {path: '', component: ProductListComponent},
+    {path: '', component: FrontpageComponent},
+    {path: 'products', component: ProductListComponent},
     {path: 'cart', component: ShoppingCartComponent},
     {path: 'checkout', component: CheckoutComponent},
     {path: 'payment', component: PaymentComponent},
