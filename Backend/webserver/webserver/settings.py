@@ -89,7 +89,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ccwebshopdb',
         'USER': 'dbuser',
-        'PASSWORD': '$wcGJTi?)2W#gj',
+        'PASSWORD': '***',
         'HOST': 'ccwebshopdb.cfhfs5nbkdiz.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
