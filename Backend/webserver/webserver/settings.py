@@ -28,7 +28,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['52.200.8.203', 'ec2-52-200-8-203.compute-1.amazonaws.com', 'localhost', '127.0.0.1']
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -149,8 +148,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # CORS Settings
 CORS_ALLOWED_ORIGINS = [
-    "http://localhost:4200",  # Angular App
+    "http://localhost:4200",  
+    "http://ccangularbucket.s3-website-us-east-1.amazonaws.com" # Angular App
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+   "http://ccangularbucket.s3-website-us-east-1.amazonaws.com",
+]
+
+CORS_ALLOW_CREDENTIALS = True
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
