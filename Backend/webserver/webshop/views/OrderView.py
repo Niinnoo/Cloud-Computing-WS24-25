@@ -49,8 +49,8 @@ class OrderView(APIView):
         order_items_serializer = OrderItemSerializer(order_items, many=True)
         
         response = {
-                'order' : order_serializer.data,
-                'order_items' : order_items_serializer.data
+                OrderData.ORDER.value : order_serializer.data,
+                OrderData.ORDER_ITEMS.value : order_items_serializer.data
                 }
         
         return Response(response)
@@ -66,6 +66,8 @@ class OrderView(APIView):
             order_serializer.save()
             
             order_items = request.data.get(OrderData.ORDER_ITEMS.value)
+            stock_manager = StockManager(order_items=order_items)
+            stock_manager.decrease_stock_multiple_items()
             
             for item in order_items:
                 item_serializer = OrderItemSerializer(data=item)
@@ -73,7 +75,7 @@ class OrderView(APIView):
                 if item_serializer.is_valid():
                     item_serializer.save()
                     
-            response = {'order': order_serializer.data, 'order_items' : item_serializer.data}
+            response = {OrderData.ORDER.value: order_serializer.data, OrderData.ORDER_ITEMS.value : item_serializer.data}
                     
             
             
