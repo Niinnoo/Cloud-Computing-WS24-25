@@ -79,9 +79,9 @@ class OrderView(APIView):
                     
             
             
-            email_service = EmailService(order_data)
-            email_service.start()
-
+            email_service = EmailService()
+            email_service.send_order_confirmation_email(order_data)
+            
             return Response(response, status=status.HTTP_201_CREATED)
 
         return Response(order_serializer.errors, status=status.HTTP_400_BAD_REQUEST)

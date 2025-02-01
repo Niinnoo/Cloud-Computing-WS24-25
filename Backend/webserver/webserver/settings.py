@@ -83,7 +83,7 @@ WSGI_APPLICATION = 'webserver.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
@@ -92,6 +92,14 @@ DATABASES = {
         'PASSWORD': '***',
         'HOST': 'ccwebshopdb.cfhfs5nbkdiz.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
+    }
+}
+'''
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
 
