@@ -7,6 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
+import { CustomerData } from '../../models/customer.model';
+import { CustomerService } from '../../services/customer/customer.service';
+
 
 @Component({
   selector: 'app-payment',
@@ -33,8 +36,9 @@ export class PaymentComponent {
   addressAddition: string = '';
   postalCode: string = '';
   city: string = '';
+  country: string = 'Germany';
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private customer: CustomerService ) {}
 
   goBackToHome() {
     this.router.navigate(['']);
@@ -42,8 +46,22 @@ export class PaymentComponent {
 
   onSubmit() {
     if (this.title && this.firstName && this.lastName && this.mail && this.billingAddress && this.street && this.houseNumber && this.postalCode && this.city) {
-      console.log('Form submitted');
+      const customerData: CustomerData = {
+        title: this.title,
+        firstName: this.firstName,
+        lastName: this.lastName,
+        mail: this.mail,
+        billingAddress: this.billingAddress,
+        street: this.street,
+        houseNumber: this.houseNumber,
+        addressAddition: this.addressAddition,
+        postalCode: this.postalCode,
+        city: this.city,
+        country: this.country
+      };
+
+      this.customer.setCustomerData(customerData);
+      this.router.navigate(['payment/processing']);
     }
-    this.router.navigate(['payment/processing']);
   }
 }

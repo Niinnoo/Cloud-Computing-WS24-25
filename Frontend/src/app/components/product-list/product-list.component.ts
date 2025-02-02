@@ -87,7 +87,7 @@ export class ProductListComponent implements OnInit {
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product);
+    this.cartService.addToCart(product.id);
   }
 
   applyFilter(event: Event) {

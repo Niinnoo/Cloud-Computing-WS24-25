@@ -30,6 +30,6 @@ export class ProductDetailsDialogComponent {
   }
 
   addToCart(product: Product) {
-    this.cartService.addToCart(product);
+    this.cartService.addToCart(product.id);
   }
 }
