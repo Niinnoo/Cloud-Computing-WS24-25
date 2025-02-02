@@ -1,10 +1,17 @@
-<div class="cart-header">
-  <button mat-raised-button (click)="onBackClick()">
-    <mat-icon>arrow_back</mat-icon>
-    Back to Products
+<mat-toolbar>
+  <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+    <mat-icon>menu</mat-icon>
   </button>
-  <h2>Shopping Cart</h2>
-</div>
+  <a href="products" class="toolbar-link">NEW</a>
+  <a href="products" class="toolbar-link">Trends</a>
+  <a href="products" class="toolbar-link">Sale %</a>
+  <div class="toolbar-title">
+    <h1>Shopping Cart</h1>
+  </div>
+<button mat-icon-button class="example-icon" aria-label="Example icon-button with shopping cart icon" (click)="onRightIcon1Click()">
+  <mat-icon>admin_panel_settings</mat-icon>
+</button>
+</mat-toolbar>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <ng-container matColumnDef="name">

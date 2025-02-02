@@ -13,6 +13,9 @@ import {ProductAdminDialogComponent} from '../product-admin-dialog/product-admin
 import {MatIconModule} from '@angular/material/icon';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
+import { MatToolbar } from '@angular/material/toolbar';
+import { MatBadge } from '@angular/material/badge';
+import { CartService } from '../../services/shopping-cart/shopping-cart.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -27,6 +30,8 @@ import {MatPaginator} from '@angular/material/paginator';
     MatIconModule,
     MatSortModule,
     MatPaginator,
+    MatToolbar,
+    MatBadge
   ],
   providers: [],
   templateUrl: './admin-panel.component.html',
@@ -38,12 +43,18 @@ export class AdminPanelComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router:Router, private productService: ProductService, private dialog: MatDialog) {
+  constructor(private router:Router, private productService: ProductService, private dialog: MatDialog,
+    private cartService: CartService    
+  ) {
 
   }
 
   ngOnInit() {
     this.loadProducts();
+  }
+
+  getTotalQuantity(): number {
+    return this.cartService.getTotalQuantity();
   }
 
   loadProducts(){
@@ -96,5 +107,17 @@ export class AdminPanelComponent implements OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  onRightIcon1Click() {
+    this.router.navigate(['/cart']);
+  }
+
+  onRightIcon2Click() {
+    this.router.navigate(['/admin']);
+  }
+
+  goBackHome() {
+    this.router.navigate(['']);
   }
 }

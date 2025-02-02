@@ -9,3 +9,69 @@
   gap: 20px;
   margin: 20px;
 }
+
+/* Design for the toolbar */
+.mat-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toolbar-title {
+  flex: 1;
+  text-align: center;
+  transform: translateX(-10%);
+}
+
+.toolbar-link {
+  color: inherit;
+  margin: 0 10px;
+  text-decoration: none;
+  position: relative;
+}
+
+.toolbar-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background: currentColor;
+  transition: width 0.3s;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+}
+
+.toolbar-link:hover::after {
+  width: 100%;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 40px 0;
+  perspective: 1000px;
+}
+
+.tile {
+  width: 250px;
+  height: 350px;
+  background: #ddd;
+  border-radius: 10px;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+  transform: rotateY(15deg);
+  transition: transform 0.3s ease-in-out;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tile:hover {
+  transform: rotateY(5deg);
+}

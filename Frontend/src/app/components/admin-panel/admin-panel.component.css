@@ -1,0 +1,40 @@
+/* Design for the toolbar */
+.mat-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .toolbar-title {
+    flex: 1;
+    text-align: center;
+    transform: translateX(-10%);
+  }
+  
+  .toolbar-link {
+    color: inherit;
+    margin: 0 10px;
+    text-decoration: none;
+    position: relative;
+  }
+  
+  .toolbar-link::after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: currentColor;
+    transition: width 0.3s;
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+  }
+  
+  .toolbar-link:hover::after {
+    width: 100%;
+  }
+  
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+  

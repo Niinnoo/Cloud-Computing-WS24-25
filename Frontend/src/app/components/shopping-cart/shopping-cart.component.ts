@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { MatToolbar } from '@angular/material/toolbar';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -18,7 +19,8 @@ import { Router } from '@angular/router';
     MatButtonModule,
     MatIconModule,
     MatSnackBarModule,
-    CommonModule
+    CommonModule,
+    MatToolbar
   ],
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
@@ -68,8 +70,8 @@ export class ShoppingCartComponent {
     this.updateCartStatus();
   }
 
-  onBackClick() {
-    this.router.navigate(['']);
+  onRightIcon1Click() {
+    this.router.navigate(['admin']);
   }
 
   onCheckoutClick() {

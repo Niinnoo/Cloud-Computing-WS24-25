@@ -1,3 +1,9 @@
+/* Standard Desktop-Layout */
+.page-container {
+    transform: scale(1);
+    transform-origin: top;
+}
+
 .centered-image {
     display: block;
     margin-left: auto;
@@ -95,7 +101,7 @@ width: 600px;
 
 .overlay-text {
     position: absolute;
-    top: 20%;
+    top: 10%;
     left: 10%;
     color: white;
     font-size: 2rem;
@@ -117,4 +123,66 @@ width: 600px;
 
 .shop-button:hover {
     background-color: #ee9542;
+}
+
+/* Anpassungen für Tablets */
+@media (max-width: 768px) {
+    .page-container {
+        transform: scale(0.9); /* Skaliert den gesamten Container */
+    }
+
+    .toolbar-title {
+        transform: translateX(0);
+        font-size: 20px; /* Kleinere Schriftgröße für Tablets */
+    }
+
+    .toolbar-link {
+        margin: 0 5px;
+        font-size: 14px; /* Kleinere Schriftgröße für Tablets */
+    }
+
+    .centered-image {
+        max-height: 50px;
+    }
+
+    button {
+        font-size: 14px; /* Kleinere Schriftgröße für Buttons auf Tablets */
+    }
+
+    .main-image {
+        width: 90%; /* Anpassung der Bildgröße für Tablets */
+        height: auto;
+    }
+}
+
+/* Anpassungen für Smartphones */
+@media (max-width: 480px) {
+    .page-container {
+        transform: scale(0.8); /* Skaliert den gesamten Container */
+    }
+
+    .toolbar-title {
+        transform: translateX(0);
+        text-align: center;
+        width: 100%;
+        font-size: 18px; /* Kleinere Schriftgröße für Smartphones */
+    }
+
+    .toolbar-link {
+        margin: 0 2px;
+        font-size: 12px; /* Kleinere Schriftgröße für Smartphones */
+    }
+
+    .centered-image {
+        max-height: 40px;
+    }
+
+    button {
+        font-size: 12px; /* Kleinere Schriftgröße für Buttons auf Smartphones */
+    }
+
+    .main-image {
+        width: 80%; /* Anpassung der Bildgröße für Smartphones */
+        height: auto;
+    }
 }

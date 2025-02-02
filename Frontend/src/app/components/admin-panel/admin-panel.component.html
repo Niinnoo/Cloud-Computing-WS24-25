@@ -1,19 +1,20 @@
 <div class="container">
-  <!-- back button -->
-  <button class="admin-button"
-          mat-raised-button
-          color="primary"
-          (click)="onBackButtonClick()"
-          matBadgeColor="warn"
-          matBadgePosition="before"
-          matBadgeOverlap="false">
-    <mat-icon>
-      arrow_back
-    </mat-icon>
+  <mat-toolbar>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="onBackButtonClick()">
+      <mat-icon>home</mat-icon>
+    </button>
+    <a href="products" class="toolbar-link">NEW</a>
+    <a href="products" class="toolbar-link">Trends</a>
+    <a href="products" class="toolbar-link">Sale %</a>
+    <div class="toolbar-title">
+      <h1>Admin panel</h1>
+    </div>
+  <button [matBadge]="getTotalQuantity()" [matBadgeHidden]="getTotalQuantity() === 0" matBadgeColor="warn"
+  matBadgeOverlap="false" matBadgePosition="before"  mat-icon-button class="example-icon" aria-label="Example icon-button with shopping cart icon" (click)="onRightIcon1Click()">
+    <mat-icon>shopping_cart</mat-icon>
   </button>
-
-  <h1>Product Catalog</h1>
-
+  </mat-toolbar>
+  
   <button mat-raised-button color="primary" (click)="onAddProduct()">add new product</button>
 
   <!-- Filter -->
