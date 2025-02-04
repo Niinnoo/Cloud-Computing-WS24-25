@@ -31,16 +31,16 @@
             Last Name is required
           </div>
         </mat-form-field>
+        <mat-form-field appearance="fill">
+          <a>E-Mail <span class="required">*</span></a>
+          <input matInput required [(ngModel)]="mail" name="mail" #mailCtrl="ngModel">
+          <div *ngIf="mailCtrl.invalid && (mailCtrl.dirty || mailCtrl.touched)" class="error">
+            E-Mail is required
+          </div>
+        </mat-form-field>
       </div>
       <div class="billing-address">
         <h3>Billing Address</h3>
-        <mat-form-field appearance="fill">
-          <a>Billing Address <span class="required">*</span></a>
-          <input matInput required [(ngModel)]="billingAddress" name="billingAddress" #billingAddressCtrl="ngModel">
-          <div *ngIf="billingAddressCtrl.invalid && (billingAddressCtrl.dirty || billingAddressCtrl.touched)" class="error">
-            Billing Address is required
-          </div>
-        </mat-form-field>
         <div class="address-row">
           <mat-form-field appearance="fill" class="street">
             <a>Street <span class="required">*</span></a>

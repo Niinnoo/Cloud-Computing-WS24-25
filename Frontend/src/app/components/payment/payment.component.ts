@@ -30,7 +30,6 @@ export class PaymentComponent {
   firstName: string = '';
   lastName: string = '';
   mail: string = '';
-  billingAddress: string = '';
   street: string = '';
   houseNumber: string = '';
   addressAddition: string = '';
@@ -45,23 +44,22 @@ export class PaymentComponent {
   }
 
   onSubmit() {
-    if (this.title && this.firstName && this.lastName && this.mail && this.billingAddress && this.street && this.houseNumber && this.postalCode && this.city) {
-      const customerData: CustomerData = {
-        title: this.title,
-        firstName: this.firstName,
-        lastName: this.lastName,
-        mail: this.mail,
-        billingAddress: this.billingAddress,
-        street: this.street,
-        houseNumber: this.houseNumber,
-        addressAddition: this.addressAddition,
-        postalCode: this.postalCode,
-        city: this.city,
-        country: this.country
-      };
+    if (this.title && this.firstName && this.lastName && this.mail && this.street && this.houseNumber && this.postalCode && this.city) {
+        const customerData: CustomerData = {
+            title: this.title,
+            firstName: this.firstName,
+            lastName: this.lastName,
+            mail: this.mail,
+            street: this.street,
+            houseNumber: this.houseNumber,
+            addressAddition: this.addressAddition,
+            postalCode: this.postalCode,
+            city: this.city,
+            country: this.country
+        };
 
-      this.customer.setCustomerData(customerData);
-      this.router.navigate(['payment/processing']);
-    }
+        this.customer.setCustomerData(customerData);
+        this.router.navigate(['payment/processing']);
+      }
   }
 }

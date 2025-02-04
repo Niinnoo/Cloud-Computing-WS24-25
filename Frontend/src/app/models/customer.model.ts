@@ -3,7 +3,6 @@ export interface CustomerData {
     firstName: string;
     lastName: string;
     mail: string;
-    billingAddress: string;
     street: string;
     houseNumber: string;
     addressAddition?: string;
