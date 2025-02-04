@@ -2,7 +2,7 @@
   <h1>Review & Order</h1>
 
   <!-- Salutation -->
-  <p class="salutation">Welcome, {{ customerData.firstName }} {{ customerData.lastName }}</p>
+  <p class="salutation">Welcome, {{ customerData?.firstName }} {{ customerData?.lastName }}</p>
 
   <div class="content">
     <!-- Left Column -->
@@ -12,10 +12,10 @@
         <mat-card class="half-width">
           <mat-card-title>Billing Address</mat-card-title>
           <mat-card-content>
-            <p>{{ customerData.billingAddress }}</p>
-            <p>{{ customerData.street }} {{ customerData.houseNumber }}</p>
-            <p>{{ customerData.postalCode }} {{ customerData.city }}</p>
-            <p>{{ customerData.country }}</p>
+            <p>{{ customerData?.billingAddress }}</p>
+            <p>{{ customerData?.street }} {{ customerData?.houseNumber }}</p>
+            <p>{{ customerData?.postalCode }} {{ customerData?.city }}</p>
+            <p>{{ customerData?.country }}</p>
           </mat-card-content>
         </mat-card>
       </div>

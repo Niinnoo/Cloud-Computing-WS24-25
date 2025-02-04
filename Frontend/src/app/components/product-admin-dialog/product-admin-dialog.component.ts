@@ -84,6 +84,7 @@ export class ProductAdminDialogComponent implements OnInit {
       if (this.isEditMode) {
         let product: Product = this.productForm.value;
         product.id = this.data.product!.id;
+        product.category_name = this.categories.data.find(cat => cat.name === product.category_name)?.id.toString() ?? product.category_name;
         this.productService.updateProduct(product);
         console.log(product);
       }

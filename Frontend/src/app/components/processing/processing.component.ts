@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from '../../services/shopping-cart/shopping-cart.service';
 import { CartItem } from '../../models/cart-item.model';
-import { CustomerService } from '../../services/customer/customer.service';
+import { CustomerService} from '../../services/customer/customer.service';
 import { CustomerData } from '../../models/customer.model';
 
 @Component({

@@ -44,7 +44,7 @@ export class AdminPanelComponent implements OnInit {
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private router:Router, private productService: ProductService, private dialog: MatDialog,
-    private cartService: CartService    
+    private cartService: CartService
   ) {
 
   }
@@ -64,6 +64,7 @@ export class AdminPanelComponent implements OnInit {
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
     });
+    console.log(this.dataSource);
   }
 
   onAddProduct() {

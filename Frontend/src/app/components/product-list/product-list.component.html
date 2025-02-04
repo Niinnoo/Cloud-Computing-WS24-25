@@ -80,7 +80,7 @@ matBadgeOverlap="false" matBadgePosition="before"  mat-icon-button class="exampl
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" aria-label="Select Page" *ngIf="isTableView"></mat-paginator>
 
   <div class="product-grid" *ngIf="!isTableView">
-    <mat-card class="product-tile" *ngFor="let product of filteredProducts">
+    <mat-card class="product-tile" *ngFor="let product of filteredProducts" (click)="showDetails(product)">
       <mat-card-header>
         <mat-card-title>{{ product.name }}</mat-card-title>
         <mat-card-subtitle>{{ product.category_name }}</mat-card-subtitle>

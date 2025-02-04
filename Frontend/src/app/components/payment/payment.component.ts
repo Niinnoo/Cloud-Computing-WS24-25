@@ -8,7 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CustomerData } from '../../models/customer.model';
-import { CustomerService } from '../../services/customer/customer.service';
+import { CustomerService} from '../../services/customer/customer.service';
 
 
 @Component({

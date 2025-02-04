@@ -6,12 +6,9 @@
       <input matInput formControlName="name" />
     </mat-form-field>
 
-    <div *ngIf="isEditMode">
-      <p>Image</p>
-      <img [src]="'http://127.0.0.1:8080'+data.product?.image" class="image-preview" />
-    </div>
 
-    <div *ngIf="!isEditMode">
+
+    <div><!--*ngIf="!isEditMode"-->
       <div class="file-upload">
         <label for="image" class="file-label">
           <mat-icon>upload</mat-icon>
@@ -29,6 +26,11 @@
         <p>Image</p>
         <img [src]="uploadedImage" class="image-preview" />
       </div>
+      <div *ngIf="!uploadedImage">
+        <p>Image</p>
+        <img [src]="'http://127.0.0.1:8080'+data.product?.image" class="image-preview" />
+      </div>
+
     </div>
     <pre>Wert: {{ productForm.get('image')?.value }}</pre>
     <pre>Fehler: {{ productForm.get('image')?.errors | json }}</pre>

@@ -47,7 +47,7 @@ export class ProductListComponent implements OnInit {
   filteredProducts = [...this.dataSource.data];
   columnsToDisplay = ['addToCart', 'image', 'name', 'description', 'price', 'category'];
   uniqueCategories: string[] = [];
-  isTableView: boolean = true;
+  isTableView: boolean = false;
   pageIndex: number = 0;
   pageSize: number = 0;
 
@@ -111,7 +111,7 @@ export class ProductListComponent implements OnInit {
     this.isTableView = !this.isTableView;
   }
 
-  showDetails(product: number) {
+  showDetails(product: Product) {
     if (product) {
       this.dialog.open(ProductDetailsDialogComponent, {
         data: product
