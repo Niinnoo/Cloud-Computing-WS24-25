@@ -41,13 +41,30 @@
         <p><strong>Order Date:</strong> {{orderData.order.order_date | date}}</p>
         <p><strong>Total Price:</strong> {{orderData.order.total_price}}€</p>
         
-        <h3>Order Items:</h3>
+        <!-- <h3>Order Items:</h3>
         <ul>
-          <li *ngFor="let product of productDetails">
+          <div *ngFor="let product of productDetails">
             <p>Product Name: {{ product.name }}</p>
             <p>Price: {{ product.price }}</p>
-          </li>
-        </ul>
+          </div>
+        </ul> -->
       </mat-card-content>
     </mat-card>
+    <mat-card *ngIf="orderData" class="order-details">
+      <mat-card-title>Order Items: </mat-card-title>
+      <mat-card-content>
+        <div *ngFor="let product of productDetails">
+          <p>Name: {{ product.name }}</p>
+          <p>Price: {{ product.price }}</p>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+            <!-- <h3>Order Items:</h3>
+        <ul>
+          <div *ngFor="let product of productDetails">
+            <p>Product Name: {{ product.name }}</p>
+            <p>Price: {{ product.price }}</p>
+          </div>
+        </ul> -->
   </div>
