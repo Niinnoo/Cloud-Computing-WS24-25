@@ -7,6 +7,7 @@ from ..models import Order, OrderItem
 from ..serializers import OrderSerializer, OrderItemSerializer
 from ..stock_management.StockManager import StockManager
 from ..email_service.EmailService import EmailService
+from ..macros import OrderItemFields
 
 class OrderData(Enum):
     ORDER = 'order'
@@ -63,13 +64,15 @@ class OrderView(APIView):
         order_serializer = OrderSerializer(data=order_data) 
 
         if order_serializer.is_valid():
-            order_serializer.save()
+            order_instance = order_serializer.save()
+            order_id = order_instance.id
             
             order_items = request.data.get(OrderData.ORDER_ITEMS.value)
             stock_manager = StockManager(order_items=order_items)
             stock_manager.decrease_stock_multiple_items()
             
             for item in order_items:
+                item[OrderItemFields.ORDER_ID.value] = order_id
                 item_serializer = OrderItemSerializer(data=item)
                 
                 if item_serializer.is_valid():
