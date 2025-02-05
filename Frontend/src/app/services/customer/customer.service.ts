@@ -6,14 +6,26 @@ import { CustomerData } from '../../models/customer.model';
   providedIn: 'root'
 })
 export class CustomerService {
-  private customerDataSubject = new BehaviorSubject<CustomerData | null>(null);
+  private customerDataSubject = new BehaviorSubject<CustomerData>(
+    {
+    title: "",
+    firstName: "",
+    lastName: "",
+    mail: "",
+    street: "",
+    houseNumber: "",
+    postalCode: "",
+    city: "",
+    country: ""
+  }
+);
   customerData$ = this.customerDataSubject.asObservable();
 
   setCustomerData(data: CustomerData) {
     this.customerDataSubject.next(data);
   }
 
-  getCustomerData(): CustomerData | null {
+  getCustomerData(): CustomerData {
     return this.customerDataSubject.getValue();
   }
 }
