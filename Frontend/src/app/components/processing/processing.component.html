@@ -2,17 +2,33 @@
   <h1>Review & Order</h1>
 
   <!-- Salutation -->
-  <p class="salutation">Welcome, {{ customerData?.firstName }} {{ customerData?.lastName }}</p>
+  <p class="salutation" style="font-size: large;">Welcome, <span style="font-size: large; font-weight: 900;" class="highlight-name">{{ customerData?.firstName }} {{ customerData?.lastName }}</span></p>
 
   <div class="content">
-    <!-- Left Column -->
-    <div class="left-column">
+    <!-- Right Column (Your Order - Highlighted) -->
+    <div class="right-column">
+      <mat-card class="shadow highlight">
+        <mat-card-title>
+          <mat-icon>shopping_cart</mat-icon> Your Order
+        </mat-card-title>
+        <mat-card-content>
+          <div *ngFor="let item of cartItems">
+            <p>{{ item.name }} - {{ item.quantity }} x {{ item.price }}€ = {{ (item.quantity * item.price).toFixed(2) }}€</p>
+          </div>
+          <p class="total highlight-total" style="font-size: large; font-weight: 900;">Total: {{ getTotalCost().toFixed(2) }}€</p>
+        </mat-card-content>
+      </mat-card>
+    </div>
+
+    <!-- Left Column (Billing, Shipping, Payment - Smaller) -->
+    <div class="left-column smaller">
       <div class="card-row">
         <!-- Billing Address -->
-        <mat-card class="half-width">
-          <mat-card-title>Billing Address</mat-card-title>
+        <mat-card class="half-width shadow">
+          <mat-card-title>
+            <mat-icon>home</mat-icon> Billing Address
+          </mat-card-title>
           <mat-card-content>
-            <p>{{ customerData?.billingAddress }}</p>
             <p>{{ customerData?.street }} {{ customerData?.houseNumber }}</p>
             <p>{{ customerData?.postalCode }} {{ customerData?.city }}</p>
             <p>{{ customerData?.country }}</p>
@@ -21,36 +37,26 @@
       </div>
 
       <!-- Shipping Options -->
-      <mat-card>
-        <mat-card-title>Shipping Options</mat-card-title>
+      <mat-card class="shadow">
+        <mat-card-title>
+          <mat-icon>local_shipping</mat-icon> Shipping Options
+        </mat-card-title>
         <p>Standard Shipping (+3.95 €)</p>
       </mat-card>
 
       <!-- Payment Methods -->
-      <mat-card>
-        <mat-card-title>Payment Method</mat-card-title>
+      <mat-card class="shadow">
+        <mat-card-title>
+          <mat-icon>payment</mat-icon> Payment Method
+        </mat-card-title>
         <p>PayPal</p>
-      </mat-card>
-    </div>
-
-    <!-- Right Column -->
-    <div class="right-column">
-      <!-- Order Summary -->
-      <mat-card>
-        <mat-card-title>Your Order</mat-card-title>
-        <mat-card-content>
-          <div *ngFor="let item of cartItems">
-            <p>{{ item.name }} - {{ item.quantity }} x {{ item.price }}€ = {{ (item.quantity * item.price).toFixed(2) }}€</p>
-          </div>
-          <p>Total: {{ getTotalCost().toFixed(2) }}€</p>
-        </mat-card-content>
       </mat-card>
     </div>
   </div>
 
   <!-- Actions -->
   <div class="actions">
-    <button mat-raised-button color="primary" (click)="buyCart()">Buy</button>
-    <button mat-raised-button color="primary" (click)="cancelOrder()">Cancel</button>
+    <button mat-raised-button color="warn" class="btn-action" (click)="cancelOrder()">Cancel</button>
+    <button mat-raised-button color="primary" class="btn-action" (click)="buyCart()">Buy</button>
   </div>
 </div>

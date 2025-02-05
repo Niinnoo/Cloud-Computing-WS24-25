@@ -9,6 +9,7 @@ import { CartService } from '../../services/shopping-cart/shopping-cart.service'
 import { CartItem } from '../../models/cart-item.model';
 import { CustomerService} from '../../services/customer/customer.service';
 import { CustomerData } from '../../models/customer.model';
+import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'app-processing',
@@ -18,7 +19,8 @@ import { CustomerData } from '../../models/customer.model';
     MatCardModule,
     MatButtonModule,
     MatRadioModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule
   ],
   templateUrl: './processing.component.html',
   styleUrls: ['./processing.component.css']
