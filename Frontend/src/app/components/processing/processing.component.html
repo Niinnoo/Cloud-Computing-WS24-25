@@ -8,8 +8,8 @@
     <!-- Right Column (Your Order - Highlighted) -->
     <div class="right-column">
       <mat-card class="shadow highlight">
-        <mat-card-title>
-          <mat-icon>shopping_cart</mat-icon> Your Order
+        <mat-card-title >
+          <mat-icon class="icon-spaced">shopping_cart</mat-icon> Your Order
         </mat-card-title>
         <mat-card-content>
           <div *ngFor="let item of cartItems">
@@ -25,8 +25,8 @@
       <div class="card-row">
         <!-- Billing Address -->
         <mat-card class="half-width shadow">
-          <mat-card-title>
-            <mat-icon>home</mat-icon> Billing Address
+          <mat-card-title >
+            <mat-icon class="icon-spaced">home</mat-icon> Billing Address
           </mat-card-title>
           <mat-card-content>
             <p>{{ customerData?.street }} {{ customerData?.houseNumber }}</p>
@@ -38,18 +38,18 @@
 
       <!-- Shipping Options -->
       <mat-card class="shadow">
-        <mat-card-title>
-          <mat-icon>local_shipping</mat-icon> Shipping Options
+        <mat-card-title class="title-spaced">
+          <mat-icon class="icon-spaced">local_shipping</mat-icon> Shipping Options
         </mat-card-title>
-        <p>Standard Shipping (+3.95 €)</p>
+        <mat-card-content>Standard Shipping (free)</mat-card-content>
       </mat-card>
 
       <!-- Payment Methods -->
       <mat-card class="shadow">
-        <mat-card-title>
-          <mat-icon>payment</mat-icon> Payment Method
+        <mat-card-title class="title-spaced">
+          <mat-icon class="icon-spaced">payment</mat-icon> Payment Method
         </mat-card-title>
-        <p>PayPal</p>
+        <mat-card-content>PayPal</mat-card-content>
       </mat-card>
     </div>
   </div>

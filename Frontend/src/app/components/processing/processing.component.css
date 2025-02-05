@@ -57,3 +57,13 @@
   button {
     font-size: 0.9em;
   }
+
+  .icon-spaced {
+    margin-left: 10px; 
+    vertical-align: middle; 
+  }
+  
+  .title-spaced {
+    margin-bottom: 12px; 
+  }
+  
