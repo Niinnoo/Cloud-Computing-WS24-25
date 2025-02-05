@@ -7,7 +7,7 @@ class EmailService(Thread):
     def __init__(self):
         super().__init__()
         
-    def send_order_confirmation_email(self, order_data):
+    def send_order_confirmation_email(self, order_data, customer_mail):
         subject = 'Order Confirmation'
         message = f"Thank you for your order, {order_data['customer_firstname']} {order_data['customer_lastname']}!"
         recipient_list = [order_data['customer_email']]
@@ -17,7 +17,7 @@ class EmailService(Thread):
             message,
             os.getenv('EMAIL_HOST_USER'),  # Absender
             #recipient_list,
-            ['nino.zoric@yahoo.de'],  # Empfänger
+            [customer_mail],  # Empfänger
             fail_silently=False,
         )
     

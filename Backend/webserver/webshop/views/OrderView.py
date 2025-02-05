@@ -80,7 +80,7 @@ class OrderView(APIView):
             
             
             email_service = EmailService()
-            email_service.send_order_confirmation_email(order_data)
+            email_service.send_order_confirmation_email(order_data, order_data.get("customer_email"))
             
             return Response(response, status=status.HTTP_201_CREATED)
 
