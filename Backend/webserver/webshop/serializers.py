@@ -12,12 +12,13 @@ class ProductSerializer(serializers.ModelSerializer):
                   ProductFields.NAME.value,
                   ProductFields.PRICE.value,
                   ProductFields.SHORT_DESCRIPTION.value,
-                  ProductFields.LONG_DESCRIPTION,
+                  ProductFields.LONG_DESCRIPTION.value,
                   ProductFields.CATEGORY_ID.value,
                   ProductFields.CATEGORY_NAME.value,
                   ProductFields.STOCK.value,
                   ProductFields.IMAGE.value]
 
+    
 class CategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = ProductCategory

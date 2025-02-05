@@ -11,8 +11,8 @@ class ProductFields(Enum):
     PRICE = "price"
     SHORT_DESCRIPTION = "short_description"
     LONG_DESCRIPTION = "long_description"
-    CATEGORY_ID = "category"
-    CATEGORY = "category"
+    CATEGORY_ID = "category_id"
+    CATEGORY_NAME = "category_name"
     STOCK = "stock"
     IMAGE = "image"
 
