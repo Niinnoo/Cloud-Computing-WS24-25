@@ -22,7 +22,7 @@ class EmailService(Thread):
         )
     
     # email contains a "table" with product_id, name, remaining, stock 
-    def send_stock_notice(self, product_info):
+    def send_stock_notice(self, product_info, email):
         
         
         subject = 'Low Stock'
@@ -55,7 +55,7 @@ class EmailService(Thread):
             message,
             os.getenv('EMAIL_HOST_USER'),  # Absender
             #recipient_list,
-            ['nino.zoric@yahoo.de'],  # Empfänger
+            [email],  # Empfänger
             fail_silently=False,
         )
         
