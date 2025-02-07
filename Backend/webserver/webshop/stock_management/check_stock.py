@@ -19,5 +19,7 @@ def check_stock(threshold):
             ProductFields.STOCK.value : product.stock
         }
         product_info.append(temp_info)
+    
+    return product_info
         
     
