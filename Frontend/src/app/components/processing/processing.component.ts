@@ -10,6 +10,7 @@ import { CartItem } from '../../models/cart-item.model';
 import { CustomerService} from '../../services/customer/customer.service';
 import { CustomerData } from '../../models/customer.model';
 import { MatIconModule } from '@angular/material/icon';
+import { ToolbarComponent } from "../toolbar/toolbar.component";
 
 @Component({
   selector: 'app-processing',
@@ -20,8 +21,9 @@ import { MatIconModule } from '@angular/material/icon';
     MatButtonModule,
     MatRadioModule,
     MatSelectModule,
-    MatIconModule
-  ],
+    MatIconModule,
+    ToolbarComponent
+],
   templateUrl: './processing.component.html',
   styleUrls: ['./processing.component.css']
 })

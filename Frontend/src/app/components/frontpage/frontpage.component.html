@@ -1,22 +1,5 @@
 <div class="page-container">
-  <mat-toolbar>
-      <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
-        <mat-icon>menu</mat-icon>
-      </button>
-      <a href="products" class="toolbar-link">NEW</a>
-      <a href="products" class="toolbar-link">Trends</a>
-      <a href="products" class="toolbar-link">Sale %</a>
-      <div class="toolbar-title">
-        <img src="/assets/online-shop.svg" alt="Online Shop" class="centered-image">
-      </div>
-      <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with account icon" (click)="onRightIcon2Click()">
-      <mat-icon>admin_panel_settings</mat-icon>
-    </button>
-    <button [matBadge]="getTotalQuantity()" [matBadgeHidden]="getTotalQuantity() === 0" matBadgeColor="warn"
-    matBadgeOverlap="false" matBadgePosition="before"  mat-icon-button class="example-icon" aria-label="Example icon-button with shopping cart icon" (click)="onRightIcon1Click()">
-      <mat-icon>shopping_cart</mat-icon>
-    </button>
-    </mat-toolbar>
+  <app-toolbar></app-toolbar>
 
     <div class="container">
       <div class="tile">

@@ -7,7 +7,7 @@ import {MatInputModule} from '@angular/material/input';
 import {ProductDetailsDialogComponent} from '../product-details-dialog/product-details-dialog.component';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
-import {MatOption, MatSelectModule} from '@angular/material/select';
+import { MatSelectModule} from '@angular/material/select';
 import {CommonModule} from '@angular/common';
 import {FormsModule} from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
@@ -18,6 +18,7 @@ import {ProductService} from '../../services/product/product.service';
 import {Product} from '../../models/product.model';
 import {MatCardModule} from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   selector: 'app-product-list',
@@ -37,7 +38,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatBadgeModule,
     RouterModule,
     MatCardModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ToolbarComponent
   ],
   templateUrl: './product-list.component.html',
   styleUrl: './product-list.component.css'
@@ -82,10 +84,6 @@ export class ProductListComponent implements OnInit {
     return [...new Set(categories)];
   }
 
-  getTotalQuantity(): number {
-    return this.cartService.getTotalQuantity();
-  }
-
   addToCart(product: Product) {
     this.cartService.addToCart(product.id);
   }
@@ -119,15 +117,4 @@ export class ProductListComponent implements OnInit {
     }
   }
 
-  onRightIcon1Click() {
-    this.router.navigate(['/cart']);
-  }
-
-  onRightIcon2Click() {
-    this.router.navigate(['/admin']);
-  }
-
-  goBackHome() {
-    this.router.navigate(['']);
-  }
 }

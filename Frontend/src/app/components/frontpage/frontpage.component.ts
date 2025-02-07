@@ -6,6 +6,7 @@ import { MatBadgeModule } from '@angular/material/badge';
 import { CartService } from '../../services/shopping-cart/shopping-cart.service';
 import { Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { ToolbarComponent } from '../toolbar/toolbar.component';
 
 @Component({
   selector: 'app-frontpage',
@@ -14,7 +15,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatButtonModule,
     MatIconModule,
     MatBadgeModule,
-    MatToolbarModule
+    MatToolbarModule,
+    ToolbarComponent
   ],
   templateUrl: './frontpage.component.html',
   styleUrl: './frontpage.component.css'
@@ -22,21 +24,8 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 export class FrontpageComponent {
 
   constructor(
-    private cartService: CartService,
     private router: Router)
     {}
-
-  getTotalQuantity(): number {
-    return this.cartService.getTotalQuantity();
-  }
-
-  onRightIcon1Click() {
-    this.router.navigate(['cart']);
-  }
-
-  onRightIcon2Click() {
-    this.router.navigate(['admin']);
-  }
 
   goShop() {
     this.router.navigate(['products']);

@@ -1,10 +1,6 @@
-<mat-toolbar class="toolbar">
-    <img src="assets/online-shop.svg" alt="Logo" class="logo" [routerLink]="['']">
-    <span class="spacer"></span>
-    <button mat-icon-button aria-label="Login">
-      <mat-icon>account_circle</mat-icon>
-    </button>
-  </mat-toolbar>
+<app-toolbar
+title="Order Tracking"
+></app-toolbar>
   
   <div class="container">
     <mat-card *ngIf="showSearch" class="tracking-card">

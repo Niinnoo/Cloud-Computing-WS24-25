@@ -7,10 +7,11 @@ import { CustomerData } from '../../models/customer.model';
 import { CustomerService } from '../../services/customer/customer.service';
 import { CartItem } from '../../models/cart-item.model';
 import { CartService } from '../../services/shopping-cart/shopping-cart.service';
+import { ToolbarComponent } from "../toolbar/toolbar.component";
 
 @Component({
   selector: 'app-order-summary',
-  imports: [MatButtonModule],
+  imports: [MatButtonModule, ToolbarComponent],
   templateUrl: './order-summary.component.html',
   styleUrl: './order-summary.component.css'
 })

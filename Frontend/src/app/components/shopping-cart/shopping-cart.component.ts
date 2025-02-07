@@ -10,6 +10,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { MatToolbar } from '@angular/material/toolbar';
+import { ToolbarComponent } from "../toolbar/toolbar.component";
 
 @Component({
   selector: 'app-shopping-cart',
@@ -20,8 +21,8 @@ import { MatToolbar } from '@angular/material/toolbar';
     MatIconModule,
     MatSnackBarModule,
     CommonModule,
-    MatToolbar
-  ],
+    ToolbarComponent
+],
   templateUrl: './shopping-cart.component.html',
   styleUrls: ['./shopping-cart.component.css']
 })
@@ -68,10 +69,6 @@ export class ShoppingCartComponent {
     this.cartService.removeFromCart(item);
     this.snackBar.open('Item removed from cart', 'Close', { duration: 2000 });
     this.updateCartStatus();
-  }
-
-  onRightIcon1Click() {
-    this.router.navigate(['admin']);
   }
 
   onCheckoutClick() {

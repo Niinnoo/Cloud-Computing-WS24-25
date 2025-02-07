@@ -24,6 +24,7 @@ export class ToolbarComponent {
   @Input() rightIcon2: string = 'admin_panel_settings';
   @Output() rightIcon1Click = new EventEmitter();
   @Output() rightIcon2Click = new EventEmitter();
+  @Output() leftIconClick = new EventEmitter();
 
   constructor(
       private cartService: CartService,
@@ -34,6 +35,11 @@ export class ToolbarComponent {
       return this.cartService.getTotalQuantity();
     }
   
+    onLeftIconClick() {
+      this.leftIconClick.emit();
+      this.navigateToHome();
+    }
+
     onRightIcon1Click() {
       this.rightIcon1Click.emit();
       this.router.navigate(['cart']);

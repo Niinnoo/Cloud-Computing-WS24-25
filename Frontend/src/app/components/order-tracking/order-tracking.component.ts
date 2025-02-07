@@ -11,21 +11,23 @@ import { RouterModule } from '@angular/router';
 import { OrderService } from '../../services/order/order.service';
 import { ProductService } from '../../services/product/product.service';
 import { OrderResponse } from '../../models/order.model';
+import { ToolbarComponent } from "../toolbar/toolbar.component";
 
 @Component({
   selector: 'app-order-tracking',
   standalone: true,
   imports: [
     MatToolbarModule,
-    MatIconModule, 
+    MatIconModule,
     MatButtonModule,
     MatFormFieldModule,
     MatInputModule,
     MatCardModule,
     FormsModule,
     CommonModule,
-    RouterModule
-  ],
+    RouterModule,
+    ToolbarComponent
+],
   templateUrl: './order-tracking.component.html',
   styleUrl: './order-tracking.component.css'
 })
