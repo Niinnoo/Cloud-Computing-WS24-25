@@ -3,11 +3,11 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import get_object_or_404
 from enum import Enum
-from ..models import Order, OrderItem
+from ..models import Order, OrderItem, Product
 from ..serializers import OrderSerializer, OrderItemSerializer
 from ..stock_management.StockManager import StockManager
 from ..email_service.EmailService import EmailService
-from ..macros import OrderItemFields
+from ..macros import OrderItemFields, OrderFields, ProductFields
 
 class OrderData(Enum):
     ORDER = 'order'
@@ -66,10 +66,14 @@ class OrderView(APIView):
         if order_serializer.is_valid():
             order_instance = order_serializer.save()
             order_id = order_instance.id
+            order_data[OrderFields.ID.value] = order_id
             
             order_items = request.data.get(OrderData.ORDER_ITEMS.value)
             stock_manager = StockManager(order_items=order_items)
-            stock_manager.decrease_stock_multiple_items()
+            try:
+                stock_manager.decrease_stock_multiple_items()
+            except:
+                return Response(order_serializer.errors, status=status.HTTP_406_NOT_ACCEPTABLE)
             
             for item in order_items:
                 item[OrderItemFields.ORDER_ID.value] = order_id
@@ -81,9 +85,12 @@ class OrderView(APIView):
             response = {OrderData.ORDER.value: order_serializer.data, OrderData.ORDER_ITEMS.value : item_serializer.data}
                     
             
-            
+            # replace product id with product name for email
+            for  order_item in order_items:
+                order_item[OrderItemFields.PRODUCT_ID.value] = Product.objects.filter(id=order_item[OrderItemFields.PRODUCT_ID.value])[0].name
+                
             email_service = EmailService()
-            email_service.send_order_confirmation_email(order_data, order_data.get("customer_email"))
+            email_service.send_order_confirmation_email(order_data, order_items)
             
             return Response(response, status=status.HTTP_201_CREATED)
 
