@@ -29,29 +29,29 @@ export class ToolbarComponent {
   constructor(
       private cartService: CartService,
       private router: Router)
-      {}
-  
-    getTotalQuantity(): number {
-      return this.cartService.getTotalQuantity();
-    }
-  
-    onLeftIconClick() {
-      this.leftIconClick.emit();
-      this.navigateToHome();
-    }
+  {}
 
-    onRightIcon1Click() {
-      this.rightIcon1Click.emit();
-      this.router.navigate(['cart']);
-    }
-  
-    onRightIcon2Click() {
-      this.rightIcon2Click.emit();
-      this.router.navigate(['admin']);
-    }
+  getTotalQuantity(): number {
+    return this.cartService.getTotalQuantity();
+  }
 
-    navigateToHome() {
-      this.router.navigate(['']);
-    }
+  onLeftIconClick() {
+    this.leftIconClick.emit();
+    this.navigateToHome();
+  }
+
+  onRightIcon1Click() {
+    this.rightIcon1Click.emit();
+    this.router.navigate(['cart']);
+  }
+
+  onRightIcon2Click() {
+    this.rightIcon2Click.emit();
+    this.router.navigate(['admin']);
+  }
+
+  navigateToHome() {
+    this.router.navigate(['']);
+  }
 
 }

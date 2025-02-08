@@ -1,12 +1,12 @@
 <mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="onLeftIconClick()">
+    <!--<button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="onLeftIconClick()">
       <mat-icon>{{ leftIcon }}</mat-icon>
-    </button>
+    </button>-->
     <a href="products" class="toolbar-link">NEW</a>
     <a href="products" class="toolbar-link">Trends</a>
     <a href="products" class="toolbar-link">Sale %</a>
-    <div class="toolbar-title">
-      <img src="/assets/online-shop.svg" (click)="navigateToHome()" alt="Online Shop" class="centered-image">
+    <div class="toolbar-title" (click)="navigateToHome()">
+      <img src="/assets/online-shop.svg" alt="Online Shop" class="centered-image">
       <h1 class="title">{{ title }}</h1>
     </div>
     <button mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with account icon" (click)="onRightIcon2Click()">
@@ -16,4 +16,4 @@
   matBadgeOverlap="false" matBadgePosition="before"  mat-icon-button class="example-icon" aria-label="Example icon-button with shopping cart icon" (click)="onRightIcon1Click()">
     <mat-icon>{{ rightIcon1 }}</mat-icon>
   </button>
-  </mat-toolbar>
+</mat-toolbar>

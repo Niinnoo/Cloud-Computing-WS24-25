@@ -9,14 +9,13 @@
     <input matInput (keyup)="applyFilter($event)"/>
   </mat-form-field>
 
-  <button (click)="toggleView()" mat-raised-button>
+  <!--<button (click)="toggleView()" mat-raised-button>
     <mat-icon *ngIf="isTableView">grid_view</mat-icon>
     <mat-icon *ngIf="!isTableView">table_view</mat-icon>
-  </button>
+  </button>-->
 
   <!-- Product Table -->
-  <table mat-table [dataSource]="dataSource" matSort *ngIf="isTableView">
-    <!-- Column: Add to Cart Button -->
+  <!--<table mat-table [dataSource]="dataSource" matSort *ngIf="isTableView">
     <ng-container matColumnDef="addToCart">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let product">
@@ -26,7 +25,6 @@
       </td>
     </ng-container>
 
-    <!-- Column: Image -->
     <ng-container matColumnDef="image">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Image </th>
       <td mat-cell *matCellDef="let product">
@@ -34,34 +32,29 @@
       </td>
     </ng-container>
 
-    <!-- Column: Name -->
     <ng-container matColumnDef="name">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
       <td mat-cell *matCellDef="let product"> {{product.name}} </td>
     </ng-container>
 
-    <!-- Column: Description -->
     <ng-container matColumnDef="description">
       <th mat-header-cell *matHeaderCellDef> Description </th>
       <td mat-cell *matCellDef="let product"> {{product.short_description}} </td>
     </ng-container>
 
-    <!-- Column: Price -->
     <ng-container matColumnDef="price">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Price </th>
       <td mat-cell *matCellDef="let product"> {{product.price}}€ </td>
     </ng-container>
 
-    <!-- Column: CategoryModel -->
     <ng-container matColumnDef="category">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Category </th>
       <td mat-cell *matCellDef="let product"> {{product.category_name}} </td>
     </ng-container>
 
-    <!-- Header and Rows -->
     <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
     <tr mat-row *matRowDef="let row; columns: columnsToDisplay;" (click)="showDetails(row)"></tr>
-  </table>
+  </table> -->
 
   <!-- Paginator for Table -->
   <mat-paginator [pageSize]="10" [pageSizeOptions]="[5, 10, 20]" aria-label="Select Page" *ngIf="isTableView"></mat-paginator>
