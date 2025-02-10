@@ -1,0 +1,46 @@
+/* Design for the toolbar */
+
+.toolbar-title .centered-image,
+.toolbar-title .title {
+  cursor: pointer;
+}
+
+.toolbar-title {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-grow: 1;
+  text-align: center;
+}
+
+.centered-image {
+  height: 40px;
+  margin-right: 8px;
+}
+
+.title {
+  font-size: 1.5rem;
+}
+
+.toolbar-link {
+  margin: 0 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.toolbar-link::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 3px;
+  background: currentColor;
+  transition: width 0.3s;
+  bottom: -2px;
+  left: 0;
+}
+
+.toolbar-link:hover::after {
+  width: 100%;
+}
+
+

@@ -1,20 +1,9 @@
+<app-toolbar
+  title="Admin Panel"
+  rightIcon2=""
+></app-toolbar>
+
 <div class="container">
-  <mat-toolbar>
-    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon" (click)="onBackButtonClick()">
-      <mat-icon>home</mat-icon>
-    </button>
-    <a href="products" class="toolbar-link">NEW</a>
-    <a href="products" class="toolbar-link">Trends</a>
-    <a href="products" class="toolbar-link">Sale %</a>
-    <div class="toolbar-title">
-      <h1>Admin panel</h1>
-    </div>
-  <button [matBadge]="getTotalQuantity()" [matBadgeHidden]="getTotalQuantity() === 0" matBadgeColor="warn"
-  matBadgeOverlap="false" matBadgePosition="before"  mat-icon-button class="example-icon" aria-label="Example icon-button with shopping cart icon" (click)="onRightIcon1Click()">
-    <mat-icon>shopping_cart</mat-icon>
-  </button>
-  </mat-toolbar>
-  
   <button mat-raised-button color="primary" (click)="onAddProduct()">add new product</button>
 
   <!-- Filter -->

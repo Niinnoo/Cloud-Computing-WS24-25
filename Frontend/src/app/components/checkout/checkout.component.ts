@@ -9,42 +9,26 @@ import { MatIcon } from '@angular/material/icon';
 import { MatBadge } from '@angular/material/badge';
 import { MatToolbar } from '@angular/material/toolbar';
 import { CartService } from '../../services/shopping-cart/shopping-cart.service';
+import { ToolbarComponent } from "../toolbar/toolbar.component";
 
 @Component({
   selector: 'app-checkout',
   imports: [
-      MatFormFieldModule,
-      MatSelectModule,
-      MatOptionModule,
-      MatInputModule,
-      MatButtonModule,
-      MatIcon,
-      MatBadge,
-      MatToolbar
-    ],
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatInputModule,
+    MatButtonModule,
+    ToolbarComponent
+],
   templateUrl: './checkout.component.html',
   styleUrl: './checkout.component.css'
 })
 export class CheckoutComponent {
-  constructor(private router: Router, private cartService: CartService) {}
-
-  getTotalQuantity(): number {
-    return this.cartService.getTotalQuantity();
-  }
-
-  onRightIcon1Click() {
-    this.router.navigate(['cart']);
-  }
-
-  onRightIcon2Click() {
-    this.router.navigate(['admin']);
-  }
+  constructor(private router: Router) {}
   
   payAsGuest() {
     this.router.navigate(['payment']);
   }
 
-  goBackToHome() {
-    this.router.navigate(['']);
-  }
 }

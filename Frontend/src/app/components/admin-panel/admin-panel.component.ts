@@ -16,6 +16,7 @@ import {MatPaginator} from '@angular/material/paginator';
 import { MatToolbar } from '@angular/material/toolbar';
 import { MatBadge } from '@angular/material/badge';
 import { CartService } from '../../services/shopping-cart/shopping-cart.service';
+import { ToolbarComponent } from "../toolbar/toolbar.component";
 
 @Component({
   selector: 'app-admin-panel',
@@ -30,9 +31,8 @@ import { CartService } from '../../services/shopping-cart/shopping-cart.service'
     MatIconModule,
     MatSortModule,
     MatPaginator,
-    MatToolbar,
-    MatBadge
-  ],
+    ToolbarComponent
+],
   providers: [],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.css'
@@ -110,15 +110,4 @@ export class AdminPanelComponent implements OnInit {
     }
   }
 
-  onRightIcon1Click() {
-    this.router.navigate(['/cart']);
-  }
-
-  onRightIcon2Click() {
-    this.router.navigate(['/admin']);
-  }
-
-  goBackHome() {
-    this.router.navigate(['']);
-  }
 }

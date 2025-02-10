@@ -9,19 +9,21 @@ import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CustomerData } from '../../models/customer.model';
 import { CustomerService} from '../../services/customer/customer.service';
+import { ToolbarComponent } from "../toolbar/toolbar.component";
 
 
 @Component({
   selector: 'app-payment',
   imports: [
-        CommonModule,
-        FormsModule,
-        MatFormFieldModule,
-        MatSelectModule,
-        MatOptionModule,
-        MatInputModule,
-        MatButtonModule
-      ],
+    CommonModule,
+    FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatOptionModule,
+    MatInputModule,
+    MatButtonModule,
+    ToolbarComponent
+],
   templateUrl: './payment.component.html',
   styleUrls: ['./payment.component.css']
 })

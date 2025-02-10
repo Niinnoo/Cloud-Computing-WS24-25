@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToolbarComponent } from "../toolbar/toolbar.component";
 
 @Component({
   selector: 'app-paypal-mockup',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, ToolbarComponent],
   templateUrl: './paypal-mockup.component.html',
   styleUrls: ['./paypal-mockup.component.css']
 })
