@@ -100,15 +100,45 @@ class EmailService(Thread):
         </html>
         """
         
-        send_mail(
-            subject,
-            message,
-            os.getenv('EMAIL_HOST_USER'),  
-            #recipient_list,
-            [email], 
-            fail_silently=False,
+        email = EmailMessage(
+            subject=subject,
+            body=message,
+            from_email=os.getenv('EMAIL_HOST_USER'),
+            to=[email]
         )
+        email.content_subtype = "html"
+        email.send(fail_silently=False)
         
+        
+    def send_order_status_update(self, order_data):
+        customer_email = order_data[OrderFields.CUSTOMER_EMAIL.value]
+        customer_name = order_data[OrderFields.CUSTOMER_FIRSTNAME.value] + order_data[OrderFields.CUSTOMER_LASTNAME.value]
+        order_status = order_data[OrderFields.STATUS.value]
+        order_id = order_data[OrderFields.ID.value]
+        subject = f'New order status: {order_status}'
+        
+        message= f"""
+        <html>
+            <h3>Order status update</h3>
+            <p>
+            Dear {customer_name},</br>
+            the status for your order {order_id} has been updated.</br>
+            The new status: {order_status}
+            </p>
+            <p>You can track your order status <a href="{TRACKING_LINK}" target="_blank">here</a>.</p>
+            
+            <p>Kind regards,<br><strong>Your Book Store</strong></p>
+        </html>
+        """
+        # Send email
+        email = EmailMessage(
+            subject=subject,
+            body=message,
+            from_email=os.getenv('EMAIL_HOST_USER'),
+            to=[customer_email]
+        )
+        email.content_subtype = "html"
+        email.send(fail_silently=False)
     
         
         
