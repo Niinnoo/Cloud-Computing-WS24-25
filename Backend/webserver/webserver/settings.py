@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-s%u)x997g#%i_56_6x)jy7)z&_aa(74pn)5s%(1x7li(tvmy7v
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['52.200.8.203', 'ec2-52-200-8-203.compute-1.amazonaws.com', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['ccdjangoloadbalancer-116866997.us-east-1.elb.amazonaws.com', '172.31.26.245', '52.200.157.65', '52.200.8.203', 'ec2-52-200-8-203.compute-1.amazonaws.com', 'localhost', '127.0.0.1']
 
 # Application definition
 
@@ -83,26 +83,26 @@ WSGI_APPLICATION = 'webserver.wsgi.application'
 #         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
-'''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'ccwebshopdb',
         'USER': 'dbuser',
-        'PASSWORD': '***',
+        'PASSWORD': '$wcGJTi?)2W#gj',
         'HOST': 'ccwebshopdb.cfhfs5nbkdiz.us-east-1.rds.amazonaws.com',
         'PORT': '3306',
     }
 }
-'''
 
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+'''
 
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
