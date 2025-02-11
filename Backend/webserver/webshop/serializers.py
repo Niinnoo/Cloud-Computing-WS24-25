@@ -2,10 +2,24 @@ from rest_framework import serializers
 from .models import Product, ProductCategory, Order, OrderItem
 from .macros import ProductFields, ProductCategoryFields, OrderFields, OrderItemFields
 
+class Base64ImageField(serializers.CharField):
+    def to_representation(self, data):
+        """
+        Return the base64 string as is, without any decoding or prefix.
+        """
+        return data if data else ""
+
+    def to_internal_value(self, data):
+        """
+        Decode the base64 string and return a ContentFile.
+        """
+        return data.encode('utf-8')
+
 class ProductSerializer(serializers.ModelSerializer):
     category_id = serializers.PrimaryKeyRelatedField(queryset=ProductCategory.objects.all(), source='category', write_only=True)
     category_name = serializers.CharField(source='category.name', read_only=True)
-
+    image = Base64ImageField()
+    
     class Meta:
         model = Product
         fields = [ProductFields.ID.value,
