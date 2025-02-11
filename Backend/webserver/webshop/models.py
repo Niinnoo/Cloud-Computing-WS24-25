@@ -14,7 +14,7 @@ class Product(models.Model):
     long_description = models.CharField(max_length=500)
     category = models.ForeignKey(ProductCategory, on_delete=models.CASCADE, related_name='products')
     stock = models.IntegerField()
-    image = models.ImageField(upload_to='product_images/')
+    image = models.BinaryField(blank=True, null=True)  # Storing image as a blob
 
     def __str__(self):
         return f'#{self.id} {self.name}'
