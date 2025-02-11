@@ -69,7 +69,8 @@ export class AdminPanelComponent implements OnInit {
 
   onAddProduct() {
     const dialogRef = this.dialog.open(ProductAdminDialogComponent, {
-      width: '400px',
+      width: '80%',
+      maxHeight: '80vh',
       data: { product: null },
     });
 
@@ -82,7 +83,8 @@ export class AdminPanelComponent implements OnInit {
 
   onEditProduct(product: Product) {
     const dialogRef = this.dialog.open(ProductAdminDialogComponent, {
-      width: '400px',
+      width: '80%',
+      maxHeight: '80vh',
       data: { product },
     });
 
@@ -94,7 +96,7 @@ export class AdminPanelComponent implements OnInit {
   }
 
   onDeleteProduct(id: number) {
-    //this.productService.deleteProduct(id);
+    this.productService.deleteProduct(id);
   }
 
   onBackButtonClick() {

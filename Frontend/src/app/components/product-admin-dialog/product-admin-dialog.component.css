@@ -24,3 +24,17 @@
   border: 1px solid #ddd;
   border-radius: 4px;
 }
+.form {
+  margin: 16px;
+}
+.full-width {
+  width: 100%;
+}
+
+.title {
+  margin: 16px;
+}
+
+.actions {
+  margin: 16px;
+}

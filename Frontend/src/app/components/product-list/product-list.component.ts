@@ -19,6 +19,7 @@ import {Product} from '../../models/product.model';
 import {MatCardModule} from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ToolbarComponent } from '../toolbar/toolbar.component';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-product-list',
@@ -60,7 +61,9 @@ export class ProductListComponent implements OnInit {
     private dialog: MatDialog,
     private cartService: CartService,
     private router: Router,
-    private productService: ProductService)
+    private productService: ProductService,
+    private sanitizer: DomSanitizer
+  )
   {
   }
 
@@ -77,6 +80,10 @@ export class ProductListComponent implements OnInit {
       this.uniqueCategories = this.getUniqueCategories(products);
       this.filteredProducts = this.dataSource.data;
     });
+  }
+
+  getSafeImageUrl(image: string) {
+    return this.sanitizer.bypassSecurityTrustUrl(image);
   }
 
   getUniqueCategories(products: any[]): string[] {
