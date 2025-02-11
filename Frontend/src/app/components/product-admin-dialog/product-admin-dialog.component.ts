@@ -66,16 +66,17 @@ export class ProductAdminDialogComponent implements OnInit {
     if (fileInput.files && fileInput.files[0]) {
       const file = fileInput.files[0];
       const reader = new FileReader();
-
       reader.onload = (e) => {
         this.uploadedImage = e.target?.result;
-      };
-      reader.readAsDataURL(file);
 
-      this.productForm.patchValue({
-        image: file,
-      });
-      this.productForm.get('image')?.updateValueAndValidity();
+        // Convert the image to Base64 and patch the form value
+        const base64Image = e.target?.result as string;
+        this.productForm.patchValue({
+            image: base64Image,
+        });
+        this.productForm.get('image')?.updateValueAndValidity();
+    };
+    reader.readAsDataURL(file);
     }
   }
 
