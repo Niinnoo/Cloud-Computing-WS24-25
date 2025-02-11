@@ -5,7 +5,7 @@ from ..macros import ProductFields, OrderFields, OrderItemFields
 from .table_generation import generate_table_header, generate_table_row
 
 
-TRACKING_LINK = 'http://localhost:4200/order-tracking'
+TRACKING_LINK = 'http://ccangularbucket.s3-website-us-east-1.amazonaws.com/order-tracking'
 
 
 
@@ -20,7 +20,7 @@ class EmailService(Thread):
         customer_name = order_data[OrderFields.CUSTOMER_FIRSTNAME.value] + order_data[OrderFields.CUSTOMER_LASTNAME.value]
         customer_email = order_data[OrderFields.CUSTOMER_EMAIL.value]
 
-        order_sum = order_data[OrderFields.TOTAL_PRICE.value] + '€'
+        order_sum =  order_data[OrderFields.TOTAL_PRICE.value]
 
         # Create table content
         table_rows = ''
