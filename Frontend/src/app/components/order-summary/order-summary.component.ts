@@ -70,6 +70,7 @@ export class OrderSummaryComponent implements OnInit {
         console.error('Error creating order', error);
       }
     );
+    this.cartService.clearCart();
   }
 
   goToSummary() {

@@ -62,4 +62,8 @@ export class CartService {
     return this.cartItems.getValue()
       .reduce((total, item) => total + (item.price * item.quantity), 0);
   }
+
+  clearCart() {
+    this.cartItems.next([]);
+  }
 }
