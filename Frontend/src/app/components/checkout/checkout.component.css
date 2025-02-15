@@ -43,3 +43,19 @@
 .tile:hover {
   transform: rotateY(5deg);
 }
+
+@media (max-width: 450px) {
+  .container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container .left {
+    border-right: none;
+    order: -1;
+  }
+
+  .container .right {
+    order: 1;
+  }
+}
