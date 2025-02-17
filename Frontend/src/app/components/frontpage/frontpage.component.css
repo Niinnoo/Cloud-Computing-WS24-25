@@ -19,6 +19,23 @@
     width: 600px;
 }
 
+.highlighted-container {
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin: 20px auto;
+    border-radius: 10px;
+    max-width: 800px;
+  }
+  
+  .highlighted-container h2 {
+    margin-top: 0;
+  }
+  
+  .highlighted-container p {
+    margin-bottom: 10px;
+  }
+
 .container {
     display: flex;
     justify-content: center;
@@ -85,6 +102,10 @@
 }
 
 @media (max-width: 1100px) {
+    .highlighted-container {
+        margin-top: 20px;
+      }
+    
     .container {
         flex-direction: column;
         align-items: center;

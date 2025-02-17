@@ -13,11 +13,7 @@
 
 .centered-image {
   height: 40px;
-  margin-right: 8px;
-}
-
-.title {
-  font-size: 1.5rem;
+  margin-right: 150px;
 }
 
 .toolbar-link {
@@ -51,10 +47,6 @@
     height: 30px;
     margin-right: 0;
     margin-bottom: 8px;
-  }
-
-  .title {
-    font-size: 1.2rem;
   }
 
   .toolbar-link {
