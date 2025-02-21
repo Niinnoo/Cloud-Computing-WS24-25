@@ -82,15 +82,16 @@ export class ProductAdminDialogComponent implements OnInit {
 
   onSave() {
     if (this.productForm.valid) {
+      let product: Product = this.productForm.value;
       if (this.isEditMode) {
-        let product: Product = this.productForm.value;
         product.id = this.data.product!.id;
         product.category_name = this.categories.data.find(cat => cat.name === product.category_name)?.id.toString() ?? product.category_name;
         this.productService.updateProduct(product);
         console.log(product);
       }
       else {
-        this.productService.addProduct(this.productForm.value);
+        product.category_id = this.categories.data.find(cat => cat.name === product.category_name)?.id ?? -1;
+        this.productService.addProduct(product);
         console.log(this.productForm.value);
       }
       this.dialogRef.close(this.productForm.value);

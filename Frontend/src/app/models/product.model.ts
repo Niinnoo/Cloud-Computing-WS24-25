@@ -6,5 +6,6 @@ export interface Product {
   short_description: string;
   long_description: string;
   category_name: string;
+  category_id: number | null;
   stock: number;
 }
