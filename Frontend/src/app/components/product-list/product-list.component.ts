@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ViewChild, Output, EventEmitter, OnInit} from '@angular/core';
+import {Component, ViewChild, OnInit} from '@angular/core';
 import {MatTableDataSource,MatTableModule} from '@angular/material/table';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
@@ -13,7 +13,6 @@ import {FormsModule} from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
 import { CartService } from '../../services/shopping-cart/shopping-cart.service';
-import { Router, RouterModule } from '@angular/router';
 import {ProductService} from '../../services/product/product.service';
 import {Product} from '../../models/product.model';
 import {MatCardModule} from '@angular/material/card';
@@ -37,7 +36,6 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
     MatSelectModule,
     MatIconModule,
     MatBadgeModule,
-    RouterModule,
     MatCardModule,
     MatToolbarModule,
     ToolbarComponent
@@ -48,11 +46,8 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 export class ProductListComponent implements OnInit {
   dataSource = new MatTableDataSource<Product>();
   filteredProducts = [...this.dataSource.data];
-  columnsToDisplay = ['addToCart', 'image', 'name', 'description', 'price', 'category'];
   uniqueCategories: string[] = [];
-  isTableView: boolean = false;
-  pageIndex: number = 0;
-  pageSize: number = 0;
+  filter: string[] = ["", ""];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator | null;
   @ViewChild(MatSort) sort!: MatSort;
@@ -60,7 +55,6 @@ export class ProductListComponent implements OnInit {
   constructor(
     private dialog: MatDialog,
     private cartService: CartService,
-    private router: Router,
     private productService: ProductService,
     private sanitizer: DomSanitizer
   )
@@ -95,25 +89,28 @@ export class ProductListComponent implements OnInit {
     this.cartService.addToCart(product.id);
   }
 
-  applyFilter(event: Event) {
+  applySearchFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    const searchText = filterValue.trim().toLowerCase();
-
-    this.dataSource.filter = searchText;
-
-    this.filteredProducts = this.dataSource.data.filter(product =>
-      product.name.toLowerCase().includes(searchText) ||
-      product.category_name.toLowerCase().includes(searchText) ||
-      product.short_description.toLowerCase().includes(searchText)
-    );
-
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+    this.filter[0] = filterValue.trim().toLowerCase();
+    this.applyFilter();
   }
 
-  toggleView() {
-    this.isTableView = !this.isTableView;
+  applyCategoryFilter(event: any) {
+    this.filter[1] = event.value.toLowerCase();
+    this.applyFilter();
+  }
+
+  applyFilter() {
+    this.filteredProducts = this.dataSource.data.filter(product =>
+      ( // Search Filter
+        product.name.toLowerCase().includes(this.filter[0]) ||
+        product.category_name.toLowerCase().includes(this.filter[0]) ||
+        product.short_description.toLowerCase().includes(this.filter[0])
+      ) &&
+      ( //Category Filter
+        product.category_name.toLowerCase().includes(this.filter[1])
+      )
+    );
   }
 
   showDetails(product: Product) {

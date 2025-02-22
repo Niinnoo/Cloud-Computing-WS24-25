@@ -4,18 +4,9 @@
   box-sizing: border-box;
 }
 
-.matHeaderCellDef {
-  position: sticky;
-}
-
-.mat-column-addToCart {
-  width: 40px;
-  max-width: 75px;
-}
-
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 16px;
   padding: 16px;
 }
@@ -25,17 +16,74 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 16px;
-  min-height: 200px;
+  min-height: 300px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   flex: 1 1 250px;
   width: 100%;
-  max-width: none;
+  max-width: 400px;
   margin: 0 auto;
 }
 
-button {
-  margin: 16px;
+.content-container {
+  display: flex;
+  /*grid-template-columns: 1fr 1fr;*/
+  align-items: flex-start; /* Vertikale Zentrierung */
+  gap: 8px; /* Mindestabstand zwischen Bild und Text */
+  width: 100%;
+  flex-wrap: nowrap;
+  height: 100%;
+  margin-top: 8px;
+}
+
+.mat-card-box img {
+  width: 120px; /* Feste Breite für Konsistenz */
+  height: auto;
+  max-height: 180px; /* Begrenzung der Höhe */
+  object-fit: contain; /* Behält das Seitenverhältnis der Cover-Bilder */
+  border-radius: 10px;
+}
+
+.mat-card-box.text-content {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Platzierung: Text oben, Preis+Button unten */
+  flex: 1;
+}
+
+.price-container {
+  margin-top: auto; /* Drückt den Preiscontainer nach unten */
+  padding-top: 8px; /* Optional, fügt einen kleinen Abstand hinzu */
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+}
+
+.price {
+  font-size: 1.3rem;
+  font-weight: bold;
+  white-space: nowrap;
+
+}
+
+button.add-to-Cart {
+  background-color: rgba(0, 0, 0, 0.06);
+  border-radius: 50%;
+  padding: 8px;
+}
+
+.product-title {
+  font-size: 1.3rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.product-subtitle {
+  font-size: 1rem;
+  color: #666; /* Dezenter für weniger Ablenkung */
+  margin-top: 4px; /* Abstand für bessere Lesbarkeit */
 }
 
 img {
@@ -43,8 +91,14 @@ img {
   object-fit: cover;
 }
 
-.content-container {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  width: 100%;
+@media (max-width: 400px) {
+  .content-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mat-card-box img {
+    width: 100%;
+    max-height: 200px;
+  }
 }
