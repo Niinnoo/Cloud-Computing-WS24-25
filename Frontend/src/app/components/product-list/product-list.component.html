@@ -3,21 +3,36 @@
 ></app-toolbar>
 
 <div class="product-list">
-  <!-- Filter -->
-  <mat-form-field appearance="outline" class="filter-field">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applySearchFilter($event)"/>
-  </mat-form-field>
 
-  <mat-form-field appearance="outline" class="filter-field">
-    <mat-label>Kategorie</mat-label>
-    <mat-select (selectionChange)="applyCategoryFilter($event)">
-      <mat-option *ngFor="let category of uniqueCategories" [value]="category">
-        {{ category }}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+  <!-- Filter and Sorting-->
+  <div class="filter-container">
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applySearchFilter($event)"/>
+    </mat-form-field>
 
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Category</mat-label>
+      <mat-select [(value)]="filter[1]" (selectionChange)="applyCategoryFilter($event)">
+        <mat-option value="">all categories</mat-option>
+        <mat-option *ngFor="let category of uniqueCategories" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Sorting</mat-label>
+      <mat-select [(value)]="sort" (selectionChange)="applySorting($event.value)">
+        <mat-option value="name_asc">name a-z</mat-option>
+        <mat-option value="name_desc">name z-a</mat-option>
+        <mat-option value="price_asc">price ascending</mat-option>
+        <mat-option value="price_desc">price descending</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+
+  <!-- Data -->
   <div class="product-grid">
     <mat-card class="product-tile" *ngFor="let product of filteredProducts" (click)="showDetails(product)">
       <mat-card-header>

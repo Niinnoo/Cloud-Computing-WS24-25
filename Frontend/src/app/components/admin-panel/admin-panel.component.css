@@ -1,3 +1,14 @@
 .container{
   margin: 16px;
 }
+
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.new-product-button {
+  margin-top: 8px;
+}

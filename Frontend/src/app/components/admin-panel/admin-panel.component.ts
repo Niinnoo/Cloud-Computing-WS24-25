@@ -17,6 +17,10 @@ import { MatToolbar } from '@angular/material/toolbar';
 import { MatBadge } from '@angular/material/badge';
 import { CartService } from '../../services/shopping-cart/shopping-cart.service';
 import { ToolbarComponent } from "../toolbar/toolbar.component";
+import {MatOption} from '@angular/material/core';
+import {MatSelect} from '@angular/material/select';
+import {NgForOf} from '@angular/common';
+import {CategoryService} from '../../services/category/category.service';
 
 @Component({
   selector: 'app-admin-panel',
@@ -31,20 +35,27 @@ import { ToolbarComponent } from "../toolbar/toolbar.component";
     MatIconModule,
     MatSortModule,
     MatPaginator,
-    ToolbarComponent
-],
+    ToolbarComponent,
+    MatOption,
+    MatSelect,
+    NgForOf
+  ],
   providers: [],
   templateUrl: './admin-panel.component.html',
   styleUrl: './admin-panel.component.css'
 })
 export class AdminPanelComponent implements OnInit {
   dataSource = new MatTableDataSource<Product>();
+  filteredProducts = [...this.dataSource.data];
+  uniqueCategories: string[] = [];
+  filter: string[] = ["", ""];
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private router:Router, private productService: ProductService, private dialog: MatDialog,
-    private cartService: CartService
+  constructor(private productService: ProductService,
+              private dialog: MatDialog,
+              private categoryService: CategoryService
   ) {
 
   }
@@ -53,18 +64,24 @@ export class AdminPanelComponent implements OnInit {
     this.loadProducts();
   }
 
-  getTotalQuantity(): number {
-    return this.cartService.getTotalQuantity();
-  }
-
   loadProducts(){
     this.productService.fetchProducts();
     this.productService.products$.subscribe((products) => {
       this.dataSource.data = products;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
+      this.applyFilter();
     });
-    console.log(this.dataSource);
+
+    this.categoryService.fetchCategories();
+    this.categoryService.categories$.subscribe((categories) => {
+      this.uniqueCategories = this.getUniqueCategories(categories);
+    })
+  }
+
+  getUniqueCategories(categories: any[]): string[] {
+    const cats = categories.map(category => category.name);
+    return [...new Set(cats)];
   }
 
   onAddProduct() {
@@ -99,17 +116,28 @@ export class AdminPanelComponent implements OnInit {
     this.productService.deleteProduct(id);
   }
 
-  onBackButtonClick() {
-    this.router.navigate(['']);
+  applySearchFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.filter[0] = filterValue.trim().toLowerCase();
+    this.applyFilter();
   }
 
-  applyFilter(event: KeyboardEvent) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+  applyCategoryFilter(event: any) {
+    this.filter[1] = event.value.toLowerCase();
+    this.applyFilter();
+  }
 
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
+  applyFilter() {
+    this.filteredProducts = this.dataSource.data.filter(product =>
+      ( // Search Filter
+        product.name.toLowerCase().includes(this.filter[0]) ||
+        product.category_name.toLowerCase().includes(this.filter[0]) ||
+        product.short_description.toLowerCase().includes(this.filter[0])
+      ) &&
+      ( //Category Filter
+        product.category_name.toLowerCase().includes(this.filter[1])
+      )
+    );
   }
 
 }

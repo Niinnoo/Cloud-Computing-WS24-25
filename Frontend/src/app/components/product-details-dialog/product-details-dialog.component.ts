@@ -10,6 +10,7 @@ import {MatButton, MatIconButton} from '@angular/material/button';
 import {Product} from '../../models/product.model';
 import {CartService} from '../../services/shopping-cart/shopping-cart.service';
 import {MatIcon} from '@angular/material/icon';
+import {CurrencyPipe} from '@angular/common';
 
 @Component({
   selector: 'app-product-details-dialog',
@@ -20,7 +21,8 @@ import {MatIcon} from '@angular/material/icon';
     MatDialogClose,
     MatDialogTitle,
     MatIcon,
-    MatIconButton
+    MatIconButton,
+    CurrencyPipe
   ],
   templateUrl: './product-details-dialog.component.html',
   styleUrl: './product-details-dialog.component.css'

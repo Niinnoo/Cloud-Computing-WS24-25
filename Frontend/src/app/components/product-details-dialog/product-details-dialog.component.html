@@ -1,9 +1,11 @@
-<h2 mat-dialog-title>Product details</h2>
-<mat-dialog-content>
-  <p><strong>Name:</strong> {{ data.name }}</p>
-  <p><strong>Description:</strong> {{ data.long_description }}</p>
-  <p><strong>Price:</strong> {{ data.price }}€</p>
-  <p><strong>CategoryModel:</strong> {{ data.category_name }}</p>
+<h2 mat-dialog-title><strong>{{ data.name }}</strong></h2>
+<mat-dialog-content class="content">
+  <img [src]="data.image"/>
+  <div>
+    <p><strong>Category:</strong> {{data.category_name}}</p>
+    <p><strong>Description:</strong> {{ data.long_description }}</p>
+    <p><strong>Price:</strong> {{ data.price | currency:'EUR':'symbol':'1.2-2' }}</p>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-icon-button (click)="addToCart(data); $event.stopPropagation()">

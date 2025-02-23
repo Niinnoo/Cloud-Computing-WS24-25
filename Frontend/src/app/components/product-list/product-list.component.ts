@@ -48,9 +48,7 @@ export class ProductListComponent implements OnInit {
   filteredProducts = [...this.dataSource.data];
   uniqueCategories: string[] = [];
   filter: string[] = ["", ""];
-
-  @ViewChild(MatPaginator) paginator!: MatPaginator | null;
-  @ViewChild(MatSort) sort!: MatSort;
+  sort: string = "";
 
   constructor(
     private dialog: MatDialog,
@@ -69,10 +67,9 @@ export class ProductListComponent implements OnInit {
     this.productService.fetchProducts();
     this.productService.products$.subscribe((products) => {
       this.dataSource.data = products;
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
       this.uniqueCategories = this.getUniqueCategories(products);
-      this.filteredProducts = this.dataSource.data;
+      this.applyFilter();
+      this.applySorting("name_asc");
     });
   }
 
@@ -111,6 +108,24 @@ export class ProductListComponent implements OnInit {
         product.category_name.toLowerCase().includes(this.filter[1])
       )
     );
+  }
+
+  applySorting(sortOption: string) {
+    this.sort = sortOption;
+
+    const [property, order] = sortOption.split('_');
+
+    if (property === 'name') {
+      this.filteredProducts.sort((a, b) => {
+        if (a.name.toLowerCase() < b.name.toLowerCase()) return order === 'asc' ? -1 : 1;
+        if (a.name.toLowerCase() > b.name.toLowerCase()) return order === 'asc' ? 1 : -1;
+        return 0;
+      })
+    } else if (property === 'price') {
+      this.filteredProducts.sort((a, b) => {
+        return order === 'asc' ? a.price - b.price : b.price - a.price;
+      })
+    }
   }
 
   showDetails(product: Product) {

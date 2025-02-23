@@ -4,6 +4,17 @@
   box-sizing: border-box;
 }
 
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.filter-field {
+  min-width: 200px;
+}
+
 .product-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -23,13 +34,18 @@
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
+  cursor: pointer;
+}
+
+.product-tile:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
 }
 
 .content-container {
   display: flex;
-  /*grid-template-columns: 1fr 1fr;*/
-  align-items: flex-start; /* Vertikale Zentrierung */
-  gap: 8px; /* Mindestabstand zwischen Bild und Text */
+  align-items: flex-start;
+  gap: 8px;
   width: 100%;
   flex-wrap: nowrap;
   height: 100%;
@@ -37,10 +53,10 @@
 }
 
 .mat-card-box img {
-  width: 120px; /* Feste Breite für Konsistenz */
+  width: 120px;
   height: auto;
-  max-height: 180px; /* Begrenzung der Höhe */
-  object-fit: contain; /* Behält das Seitenverhältnis der Cover-Bilder */
+  max-height: 180px;
+  object-fit: contain;
   border-radius: 10px;
 }
 
@@ -48,13 +64,13 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* Platzierung: Text oben, Preis+Button unten */
+  justify-content: space-between;
   flex: 1;
 }
 
 .price-container {
-  margin-top: auto; /* Drückt den Preiscontainer nach unten */
-  padding-top: 8px; /* Optional, fügt einen kleinen Abstand hinzu */
+  margin-top: auto;
+  padding-top: 8px;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -68,7 +84,7 @@
 
 }
 
-button.add-to-Cart {
+.add-to-Cart {
   background-color: rgba(0, 0, 0, 0.06);
   border-radius: 50%;
   padding: 8px;
@@ -82,13 +98,23 @@ button.add-to-Cart {
 
 .product-subtitle {
   font-size: 1rem;
-  color: #666; /* Dezenter für weniger Ablenkung */
-  margin-top: 4px; /* Abstand für bessere Lesbarkeit */
+  color: #666;
+  margin-top: 4px;
 }
 
-img {
-  border-radius: 5px;
-  object-fit: cover;
+@media (max-width: 500px) {
+  .filter-container {
+    flex-direction: column;
+    align-items: center;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+
+  .filter-field {
+    width: 100%;
+    max-width: 300px;
+    min-width: 280px;
+  }
 }
 
 @media (max-width: 400px) {

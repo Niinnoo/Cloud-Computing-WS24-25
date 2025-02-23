@@ -4,13 +4,24 @@
 ></app-toolbar>
 
 <div class="container">
-  <button mat-raised-button color="primary" (click)="onAddProduct()">add new product</button>
 
-  <!-- Filter -->
-  <mat-form-field appearance="outline" class="filter-field">
-    <mat-label>Filter</mat-label>
-    <input matInput (keyup)="applyFilter($event)"/>
-  </mat-form-field>
+  <div class="filter-container">
+    <button class="new-product-button" mat-stroked-button color="primary" (click)="onAddProduct()">add new product</button>
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Search</mat-label>
+      <input matInput (keyup)="applySearchFilter($event)"/>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="filter-field">
+      <mat-label>Category</mat-label>
+      <mat-select [(value)]="filter[1]" (selectionChange)="applyCategoryFilter($event)">
+        <mat-option value="">all categories</mat-option>
+        <mat-option *ngFor="let category of uniqueCategories" [value]="category">
+          {{ category }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8" matSort>
     <ng-container matColumnDef="name">
