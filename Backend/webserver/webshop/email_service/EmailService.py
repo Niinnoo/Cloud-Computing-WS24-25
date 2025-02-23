@@ -111,10 +111,10 @@ class EmailService(Thread):
         
         
     def send_order_status_update(self, order_data):
-        customer_email = order_data[OrderFields.CUSTOMER_EMAIL.value]
-        customer_name = order_data[OrderFields.CUSTOMER_FIRSTNAME.value] + order_data[OrderFields.CUSTOMER_LASTNAME.value]
-        order_status = order_data[OrderFields.STATUS.value]
-        order_id = order_data[OrderFields.ID.value]
+        customer_email = order_data.customer_email
+        customer_name = order_data.customer_firstname + order_data.customer_lastname
+        order_status = order_data.status
+        order_id = order_data.id
         subject = f'New order status: {order_status}'
         
         message= f"""

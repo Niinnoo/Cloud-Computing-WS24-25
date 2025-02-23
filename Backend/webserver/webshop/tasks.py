@@ -12,16 +12,22 @@ def low_stock(threshold):
     
 
 def update_order_status():
-    status = ['pending', 'completed', 'canceled']
+    status = ['PENDING', 'COMPLETED', 'CANCELED']
     
-    updated_orders = []
+    updated_orders = [] 
     pending_orders = Order.objects.filter(status=status[0])
-    pending_orders.update(status=status[1])
-    updated_orders.extend(pending_orders)
+
+    for order in pending_orders:
+        if order.status != status[1]: 
+            order.status = status[1]  
+            order.save()  
+            updated_orders.append(order)  
     
+    '''
     complete_orders = Order.objects.filter(status=status[1])
-    complete_orders.update(status=status[0])
-    updated_orders.extend(complete_orders)
+    complete_orders.update(status=status[2])
+    updated_orders.extend(Order.objects.filter(status=status[2]))
+    '''
     
     email_service = EmailService()
     
