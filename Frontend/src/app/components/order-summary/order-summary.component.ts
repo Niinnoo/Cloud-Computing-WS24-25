@@ -45,7 +45,7 @@ export class OrderSummaryComponent implements OnInit {
       customer_firstname: this.customerData?.firstName,
       customer_lastname: this.customerData.lastName,
       customer_email: this.customerData.mail,
-      total_price: this.cartService.getTotalCost()
+      total_price: parseFloat(this.cartService.getTotalCost().toFixed(2))
     },
       order_items : []
     }
@@ -56,7 +56,7 @@ export class OrderSummaryComponent implements OnInit {
         product_id : element.id,
         quantity : element.quantity,
         unit_price : element.price,
-        total_price: (element.quantity*element.price)
+        total_price: parseFloat((element.quantity * element.price).toFixed(2))
       })
     })    
 
