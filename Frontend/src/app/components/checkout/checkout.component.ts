@@ -5,10 +5,6 @@ import { MatOptionModule } from '@angular/material/core';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-import { MatIcon } from '@angular/material/icon';
-import { MatBadge } from '@angular/material/badge';
-import { MatToolbar } from '@angular/material/toolbar';
-import { CartService } from '../../services/shopping-cart/shopping-cart.service';
 import { ToolbarComponent } from "../toolbar/toolbar.component";
 
 @Component({
@@ -26,7 +22,7 @@ import { ToolbarComponent } from "../toolbar/toolbar.component";
 })
 export class CheckoutComponent {
   constructor(private router: Router) {}
-  
+
   payAsGuest() {
     this.router.navigate(['payment']);
   }

@@ -3,7 +3,6 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatBadgeModule } from '@angular/material/badge';
-import { CartService } from '../../services/shopping-cart/shopping-cart.service';
 import { Router } from '@angular/router';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { ToolbarComponent } from '../toolbar/toolbar.component';

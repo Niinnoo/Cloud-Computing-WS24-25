@@ -13,9 +13,6 @@ import {ProductAdminDialogComponent} from '../product-admin-dialog/product-admin
 import {MatIconModule} from '@angular/material/icon';
 import {MatSort, MatSortModule} from '@angular/material/sort';
 import {MatPaginator} from '@angular/material/paginator';
-import { MatToolbar } from '@angular/material/toolbar';
-import { MatBadge } from '@angular/material/badge';
-import { CartService } from '../../services/shopping-cart/shopping-cart.service';
 import { ToolbarComponent } from "../toolbar/toolbar.component";
 import {MatOption} from '@angular/material/core';
 import {MatSelect} from '@angular/material/select';
@@ -46,7 +43,6 @@ import {CategoryService} from '../../services/category/category.service';
 })
 export class AdminPanelComponent implements OnInit {
   dataSource = new MatTableDataSource<Product>();
-  filteredProducts = [...this.dataSource.data];
   uniqueCategories: string[] = [];
   filter: string[] = ["", ""];
 
@@ -70,7 +66,12 @@ export class AdminPanelComponent implements OnInit {
       this.dataSource.data = products;
       this.dataSource.paginator = this.paginator;
       this.dataSource.sort = this.sort;
-      this.applyFilter();
+      this.dataSource.filterPredicate = (data: Product, filter: string) => {
+        const searchMatch = data.name.toLowerCase().includes(filter) || data.id.toString().includes(filter);
+        const categoryMatch = this.filter[1] ? data.category_name.toLowerCase() === this.filter[1].toLowerCase() : true;
+        return searchMatch && categoryMatch;
+      };
+      //this.applyFilter();
     });
 
     this.categoryService.fetchCategories();
@@ -90,12 +91,6 @@ export class AdminPanelComponent implements OnInit {
       maxHeight: '80vh',
       data: { product: null },
     });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        //this.productService.addProduct(result);
-      }
-    });
   }
 
   onEditProduct(product: Product) {
@@ -103,12 +98,6 @@ export class AdminPanelComponent implements OnInit {
       width: '80%',
       maxHeight: '80vh',
       data: { product },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        //this.productService.updateProduct({ ...product, ...result });
-      }
     });
   }
 
@@ -118,26 +107,7 @@ export class AdminPanelComponent implements OnInit {
 
   applySearchFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.filter[0] = filterValue.trim().toLowerCase();
-    this.applyFilter();
-  }
-
-  applyCategoryFilter(event: any) {
-    this.filter[1] = event.value.toLowerCase();
-    this.applyFilter();
-  }
-
-  applyFilter() {
-    this.filteredProducts = this.dataSource.data.filter(product =>
-      ( // Search Filter
-        product.name.toLowerCase().includes(this.filter[0]) ||
-        product.category_name.toLowerCase().includes(this.filter[0]) ||
-        product.short_description.toLowerCase().includes(this.filter[0])
-      ) &&
-      ( //Category Filter
-        product.category_name.toLowerCase().includes(this.filter[1])
-      )
-    );
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
 }
